@@ -2,7 +2,22 @@
       (:require
        [magewars-deckbuilder.deck :as d]))
 
+(defn map-filter
+  [m]
+  (fn [x] (every? #(= (get x (first %)) (second %)) m)))
+(def card-filter (cell {}))
+(def cards (cell= (filter (map-filter card-filter) d/deck)))
+
 (html
  (head)
  (body
-  (h1 "Hello, Dawg!")))
+  (h1 "Hello, Dawg!")
+  (div :class "filters"
+       (loop-tpl :bindings [name ["bob" "joe"]]
+        (div
+         (h3 (text "~{name}"))
+         (ul
+          (loop-tpl :bindings [attr ["a" "b"]]
+           (li (text "~{attr}")))))))
+  (loop-tpl :bindings [card d/deck]
+            (div (text "~{card}")))))
