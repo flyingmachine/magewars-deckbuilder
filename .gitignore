@@ -1,0 +1,3 @@
+.boot
+.lein*
+resources/public

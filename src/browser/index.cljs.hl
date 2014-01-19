@@ -1,0 +1,8 @@
+(page "index.html"
+      (:require
+       [magewars-deckbuilder.deck :as d]))
+
+(html
+ (head)
+ (body
+  (h1 "Hello, Dawg!")))
