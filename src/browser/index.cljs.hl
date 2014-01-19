@@ -8,16 +8,19 @@
 (def card-filter (cell {}))
 (def cards (cell= (filter (map-filter card-filter) d/deck)))
 
+(defn filter-val
+  [attr-name val]
+  (li (text "~{attr-name}: ~{val}")))
+
+(defn filter-attribute
+  [[attr-name vals]]
+  (div (h3 (text "~{attr-name}"))
+       (ul (map (partial filter-val attr-name) vals))))
 (html
  (head)
  (body
   (h1 "Hello, Dawg!")
   (div :class "filters"
-       (loop-tpl :bindings [name ["bob" "joe"]]
-        (div
-         (h3 (text "~{name}"))
-         (ul
-          (loop-tpl :bindings [attr ["a" "b"]]
-           (li (text "~{attr}")))))))
+       (map filter-attribute (sort first (seq d/attributes))))
   (loop-tpl :bindings [card d/deck]
             (div (text "~{card}")))))
