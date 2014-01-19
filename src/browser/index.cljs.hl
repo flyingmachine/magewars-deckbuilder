@@ -16,6 +16,7 @@
   [[attr-name vals]]
   (div (h3 (text "~{attr-name}"))
        (ul (map (partial filter-val attr-name) vals))))
+
 (html
  (head)
  (body
