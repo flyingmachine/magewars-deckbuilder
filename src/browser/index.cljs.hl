@@ -2,31 +2,40 @@
       (:require
        [magewars-deckbuilder.deck :as d]))
 
-(def card-filters (cell {:type #{:creature}}))
+(set! cljs.core/*print-fn* #(.log js/console %))
+
+(def card-filters (cell {}))
 (defn add-filter
   [cf attr val]
-  (if (get cf attr)
-    (assoc-in cf [attr val])
-    (merge cf {attr #{val}})))
+  (merge-with into cf {attr #{val}}))
+(defn remove-filter
+  [cf attr val]
+  (let [vals (disj (get cf attr) val)]
+    (if (empty? vals)
+      (dissoc cf attr)
+      (merge cf {attr vals}))))
 
 (defn map-set-filter
   [filters x]
   (every? #((second %) (get x (first %))) filters))
-
 (def cards (cell= (filter (partial map-set-filter card-filters) d/deck)))
 
-(defn add-filter!
-  [attr val]
-  #(swap! card-filter add-filter attr val))
+(defn toggle-filter!
+  [filters attr val]
+  (fn []
+    (let [f (if (get-in @filters [attr val]) remove-filter add-filter)]
+      (swap! filters f attr val))))
 
 (defn filter-val
-  [attr-name val]
-  (li (text "~{attr-name}: ~{val}")))
+  [attr val]
+  (li
+   :on-click (toggle-filter! card-filters attr val)
+   (text "~{val}")))
 
 (defn filter-attribute
-  [[attr-name vals]]
-  (div (h3 (text "~{attr-name}"))
-       (ul (map (partial filter-val attr-name) vals))))
+  [[attr vals]]
+  (div (h3 (text "~{attr}"))
+       (ul (map (partial filter-val attr) vals))))
 
 (html
  (head)
