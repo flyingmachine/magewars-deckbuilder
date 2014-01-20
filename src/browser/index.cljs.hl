@@ -27,15 +27,15 @@
       (swap! filters f attr val))))
 
 (defn filter-val
-  [attr val]
+  [filters attr val]
   (li
-   :on-click (toggle-filter! card-filters attr val)
+   :on-click (toggle-filter! filters attr val)
    (text "~{val}")))
 
 (defn filter-attribute
   [[attr vals]]
   (div (h3 (text "~{attr}"))
-       (ul (map (partial filter-val attr) vals))))
+       (ul (map (partial filter-val card-filters attr) vals))))
 
 (html
  (head)
