@@ -1,6 +1,5 @@
 (page "index.html"
-      (:require
-       [magewars-deckbuilder.deck :as d]))
+  (:require [magewars-deckbuilder.deck :as d]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
@@ -16,6 +15,9 @@
   [filters x]
   (every? #((second %) (get x (first %))) filters))
 (def cards (cell= (filter (partial map-set-filter card-filters) d/deck)))
+(defn filter-count
+  [attr val]
+  (cell= (count (filter #(= (get % attr) val) cards))))
 
 (defn toggle-filter!
   [filters attr val]
@@ -31,7 +33,7 @@
     (input :type "checkbox"
            :on-change (toggle-filter! filters attr val)
            :checked true)
-    (text "~{val}"))))
+    (text "~{val} ~{@(filter-count attr val)}"))))
 
 (defn filter-attribute
   [[attr vals]]
