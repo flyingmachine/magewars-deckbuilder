@@ -4,16 +4,13 @@
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
-(def card-filters (cell {}))
+(def card-filters (cell d/attributes))
 (defn add-filter
   [cf attr val]
   (merge-with into cf {attr #{val}}))
 (defn remove-filter
   [cf attr val]
-  (let [vals (disj (get cf attr) val)]
-    (if (empty? vals)
-      (dissoc cf attr)
-      (merge cf {attr vals}))))
+  (merge cf {attr (disj (get cf attr) val)}))
 
 (defn map-set-filter
   [filters x]
@@ -26,11 +23,15 @@
     (let [f (if (get-in @filters [attr val]) remove-filter add-filter)]
       (swap! filters f attr val))))
 
+
 (defn filter-val
   [filters attr val]
   (li
-   :on-click (toggle-filter! filters attr val)
-   (text "~{val}")))
+   (label
+    (input :type "checkbox"
+           :on-change (toggle-filter! filters attr val)
+           :checked true)
+    (text "~{val}"))))
 
 (defn filter-attribute
   [[attr vals]]
