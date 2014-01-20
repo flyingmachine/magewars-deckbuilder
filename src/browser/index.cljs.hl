@@ -39,21 +39,27 @@
            :on-change (toggle-filter! filters attr val)
            :checked false)
     (text "~{val} ~{@(filter-count cards attr val)}"))))
-
 (defn filter-attribute
   [cards filters [attr vals]]
   (div (h3 (text "~{attr}"))
        (ul (map (partial filter-val cards filters attr) vals))))
 
 (defn filterable-card-set
-  [cards filters]
+  [cards filters dest]
   (let [filtersc (cell filters)
         cardsc (cell= (filter-cards cards filtersc))]
     (div
      (div :class "filters"
       (map (partial filter-attribute cardsc filtersc) (sort first (seq d/attributes))))
      (loop-tpl :bindings [card (vec cardsc)]
-      (div (text "~{card}"))))))
+      (div :on-click (move-card card cards dest)
+       (text "~{card}"))))))
+
+(defn move-card
+  [card src dest]
+  (fn []
+    (swap! src disj card)
+    (swap! dest conj card)))
 
 (html
  (head)
@@ -61,7 +67,7 @@
   (h1 "Mage Wars Deck Builder")
   (div :id "deck"
    (h3 "Your Deck")
-   (filterable-card-set d/deck {}))
+   (filterable-card-set d/deck {} d/base-set))
   (div :id "base-set"
    (h3 "Base Set")
-   (filterable-card-set d/base-set {}))))
+   (filterable-card-set d/base-set {} d/deck))))

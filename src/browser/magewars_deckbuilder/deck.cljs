@@ -9,7 +9,7 @@
   {:school #{:chaos :divine :nature :elemental}
    :type #{:creature :spell :equipment}})
 
-(def deck
+(defc deck
   #{{:title "minotaur"
      :school :chaos
      :cost 12
@@ -19,7 +19,7 @@
      :cost 3
      :type :spell}})
 
-(def base-set
+(defc base-set
   #{{:title "magic wand"
      :school :elemental
      :cost 8
