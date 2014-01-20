@@ -3,7 +3,6 @@
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
-(def card-filters (cell {}))
 (defn add-filter
   [cf attr val]
   (merge-with into cf {attr #{val}}))
@@ -13,27 +12,24 @@
     (if (empty? vals)
       (dissoc cf attr)
       (merge cf {attr vals}))))
-
-(defn map-set-filter
-  [filters x]
-  (every? #((second %) (get x (first %))) filters))
-(defn filter-cards
-  [filters cards]
-  (if (empty? filters)
-    cards
-    (filter (partial map-set-filter filters) cards)))
-
-(def cards (cell= (filter-cards card-filters d/deck)))
-
-(defn filter-count
-  [cards attr val]
-  (cell= (count (filter #(= (get % attr) val) cards))))
-
 (defn toggle-filter!
   [filters attr val]
   (fn []
     (let [f (if (get-in @filters [attr val]) remove-filter add-filter)]
       (swap! filters f attr val))))
+
+(defn map-set-filter
+  [filters x]
+  (every? #((second %) (get x (first %))) filters))
+(defn filter-cards
+  [cards filters]
+  (if (empty? filters)
+    cards
+    (filter (partial map-set-filter filters) cards)))
+
+(defn filter-count
+  [cards attr val]
+  (cell= (count (filter #(= (get % attr) val) cards))))
 
 (defn filter-val
   [cards filters attr val]
@@ -45,17 +41,19 @@
     (text "~{val} ~{@(filter-count cards attr val)}"))))
 
 (defn filter-attribute
-  [[attr vals]]
+  [cards filters [attr vals]]
   (div (h3 (text "~{attr}"))
-       (ul (map (partial filter-val cards card-filters attr) vals))))
+       (ul (map (partial filter-val cards filters attr) vals))))
 
-(defn card-set
+(defn filterable-card-set
   [cards filters]
-  (div
-   (div :class "filters"
-    (map filter-attribute (sort first (seq d/attributes))))
-   (loop-tpl :bindings [card cards]
-    (div (text "~{card}")))))
+  (let [filtersc (cell filters)
+        cardsc (cell= (filter-cards cards filtersc))]
+    (div
+     (div :class "filters"
+      (map (partial filter-attribute cardsc filtersc) (sort first (seq d/attributes))))
+     (loop-tpl :bindings [card cardsc]
+      (div (text "~{card}"))))))
 
 (html
  (head)
@@ -63,4 +61,4 @@
   (h1 "Mage Wars Deck Builder")
   (div :id "deck"
    (h3 "Your Deck")
-   (card-set cards card-filters))))
+   (filterable-card-set d/deck {}))))
