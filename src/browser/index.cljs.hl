@@ -3,18 +3,29 @@
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
-(def card-filters (cell d/attributes))
+(def card-filters (cell {}))
 (defn add-filter
   [cf attr val]
   (merge-with into cf {attr #{val}}))
 (defn remove-filter
   [cf attr val]
-  (merge cf {attr (disj (get cf attr) val)}))
+  (let [vals (disj (get cf attr) val)]
+    (if (empty? vals)
+      (dissoc cf attr)
+      (merge cf {attr vals}))))
 
 (defn map-set-filter
   [filters x]
   (every? #((second %) (get x (first %))) filters))
+(defn filter-cards
+  [filters cards]
+  (if (empty? filters)
+    cards
+    (filter (partial map-set-filter filters) cards)))
+
+(def cards (cell= (filter-cards card-filters d/deck)))
 (def cards (cell= (filter (partial map-set-filter card-filters) d/deck)))
+
 
 (defn filter-count
   [cards attr val]
@@ -32,7 +43,7 @@
    (label
     (input :type "checkbox"
            :on-change (toggle-filter! filters attr val)
-           :checked true)
+           :checked false)
     (text "~{val} ~{@(filter-count cards attr val)}"))))
 
 (defn filter-attribute
