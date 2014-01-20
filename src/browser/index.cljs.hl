@@ -44,6 +44,13 @@
   (div (h3 (text "~{attr}"))
        (ul (map (partial filter-val cards filters attr) vals))))
 
+(defn move-card
+  [card src dest]
+  (fn []
+    (let [c @card]
+      (swap! src disj c)
+      (swap! dest conj c))))
+
 (defn filterable-card-set
   [cards filters dest]
   (let [filtersc (cell filters)
@@ -51,15 +58,9 @@
     (div
      (div :class "filters"
       (map (partial filter-attribute cardsc filtersc) (sort first (seq d/attributes))))
-     (loop-tpl :bindings [card (vec cardsc)]
+     (loop-tpl :size 20 :bindings [card (vec cardsc)]
       (div :on-click (move-card card cards dest)
        (text "~{card}"))))))
-
-(defn move-card
-  [card src dest]
-  (fn []
-    (swap! src disj card)
-    (swap! dest conj card)))
 
 (html
  (head)
