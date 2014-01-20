@@ -15,8 +15,9 @@
   [filters x]
   (every? #((second %) (get x (first %))) filters))
 (def cards (cell= (filter (partial map-set-filter card-filters) d/deck)))
+
 (defn filter-count
-  [attr val]
+  [cards attr val]
   (cell= (count (filter #(= (get % attr) val) cards))))
 
 (defn toggle-filter!
@@ -25,20 +26,19 @@
     (let [f (if (get-in @filters [attr val]) remove-filter add-filter)]
       (swap! filters f attr val))))
 
-
 (defn filter-val
-  [filters attr val]
+  [cards filters attr val]
   (li
    (label
     (input :type "checkbox"
            :on-change (toggle-filter! filters attr val)
            :checked true)
-    (text "~{val} ~{@(filter-count attr val)}"))))
+    (text "~{val} ~{@(filter-count cards attr val)}"))))
 
 (defn filter-attribute
   [[attr vals]]
   (div (h3 (text "~{attr}"))
-       (ul (map (partial filter-val card-filters attr) vals))))
+       (ul (map (partial filter-val cards card-filters attr) vals))))
 
 (html
  (head)
