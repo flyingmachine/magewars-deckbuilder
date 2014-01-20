@@ -24,8 +24,6 @@
     (filter (partial map-set-filter filters) cards)))
 
 (def cards (cell= (filter-cards card-filters d/deck)))
-(def cards (cell= (filter (partial map-set-filter card-filters) d/deck)))
-
 
 (defn filter-count
   [cards attr val]
@@ -51,11 +49,18 @@
   (div (h3 (text "~{attr}"))
        (ul (map (partial filter-val cards card-filters attr) vals))))
 
+(defn card-set
+  [cards filters]
+  (div
+   (div :class "filters"
+    (map filter-attribute (sort first (seq d/attributes))))
+   (loop-tpl :bindings [card cards]
+    (div (text "~{card}")))))
+
 (html
  (head)
  (body
-  (h1 "Hello, Dawg!")
-  (div :class "filters"
-       (map filter-attribute (sort first (seq d/attributes))))
-  (loop-tpl :bindings [card cards]
-            (div (text "~{card}")))))
+  (h1 "Mage Wars Deck Builder")
+  (div :id "deck"
+   (h3 "Your Deck")
+   (card-set cards card-filters))))
