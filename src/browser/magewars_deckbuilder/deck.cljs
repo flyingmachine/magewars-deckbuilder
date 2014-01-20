@@ -6,8 +6,8 @@
 
 
 (def attributes
-  {:schools [:chaos :divine :nature]
-   :types [:creature :spell]})
+  {:school #{:chaos :divine :nature}
+   :type #{:creature :spell}})
 
 (defc deck [{:title "minotaur"
              :school :chaos
