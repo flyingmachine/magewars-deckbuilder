@@ -52,7 +52,7 @@
     (div
      (div :class "filters"
       (map (partial filter-attribute cardsc filtersc) (sort first (seq d/attributes))))
-     (loop-tpl :bindings [card (into [] cardsc)]
+     (loop-tpl :bindings [card (vec cardsc)]
       (div (text "~{card}"))))))
 
 (html
