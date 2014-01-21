@@ -8,15 +8,15 @@
   (into {} (map #(vector (first %) #{}) attrs)))
 (defn add-filter
   [cf attr val]
-  (merge-with into cf {attr #{val}}))
+  (merge-with conj cf {attr val}))
 (defn remove-filter
   [cf attr val]
-  (merge cf {attr (disj (get cf attr) val)}))
+  (merge-with disj cf {attr val}))
 (defn toggle-filter!
   [filters attr val]
   (fn []
-    (let [f (if (get-in @filters [attr val]) remove-filter add-filter)]
-      (swap! filters f attr val))))
+    (let [f (if (get-in @filters [attr val]) disj conj)]
+      (swap! filters #(merge-with f % {attr val})))))
 
 (defn only-non-empty
   [filters]
