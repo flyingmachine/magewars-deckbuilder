@@ -54,7 +54,7 @@
 (defn filterable-card-set
   [cards filters dest]
   (let [filtersc (cell filters)
-        cardsc (cell= (filter-cards cards filtersc))]
+        cardsc (cell= (sort-by :title (filter-cards cards filtersc)))]
     (div
      (div :class "filters"
       (map (partial filter-attribute cardsc filtersc) (sort first (seq d/attributes))))
