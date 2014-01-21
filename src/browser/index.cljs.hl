@@ -36,8 +36,7 @@
   (li
    (label
     (input :type "checkbox"
-           :on-change (toggle-filter! filters attr val)
-           :checked false)
+           :on-change (toggle-filter! filters attr val))
     (text "~{val} ~{@(filter-count cards attr val)}"))))
 (defn filter-attribute
   [cards filters [attr vals]]
@@ -57,8 +56,8 @@
         cardsc (cell= (sort-by :title (filter-cards cards filtersc)))]
     (div
      (div :class "filters"
-      (map (partial filter-attribute cardsc filtersc) (sort first (seq d/attributes))))
-     (loop-tpl :size 20 :bindings [card (vec cardsc)]
+      (map (partial filter-attribute cardsc filtersc) (sort-by first (seq d/attributes))))
+     (loop-tpl :size 20 :bindings [card cardsc]
       (div :on-click (move-card card cards dest)
        (text "~{card}"))))))
 

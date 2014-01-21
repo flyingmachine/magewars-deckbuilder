@@ -4,7 +4,7 @@
   (:require
    [tailrecursion.javelin :as j :refer [cell]]))
 
-
+;; TODO derive attributes from cards
 (def attributes
   {:school #{:chaos :divine :nature :elemental}
    :type #{:creature :spell :equipment}})
