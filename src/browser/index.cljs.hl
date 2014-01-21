@@ -33,10 +33,11 @@
   [all-cards cards filters attr val]
   (cell= (count
           (if (get-in filters [attr val])
-            (filter #(= (get % attr) val) cards)
+            (filter #(= (attr %) val) cards)
             (filter
-             (partial map-set-filter (only-non-empty (dissoc filters attr)))
-             (filter #(= (get % attr) val) all-cards))))))
+             #(and (= (attr %) val)
+                   ((partial map-set-filter (only-non-empty (dissoc filters attr))) %))
+             all-cards)))))
 
 (defn filter-val
   [all-cards cards filters attr val]
