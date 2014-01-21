@@ -3,15 +3,16 @@
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
+(defn empty-filters
+  [attrs]
+  (into {} (map #(vector (first %) #{}) attrs)))
 (defn add-filter
   [cf attr val]
   (merge-with into cf {attr #{val}}))
 (defn remove-filter
   [cf attr val]
-  (let [vals (disj (get cf attr) val)]
-    (if (empty? vals)
-      (dissoc cf attr)
-      (merge cf {attr vals}))))
+  (merge cf {attr (disj (get cf attr) val)}))
+
 (defn toggle-filter!
   [filters attr val]
   (fn []
@@ -20,7 +21,10 @@
 
 (defn map-set-filter
   [filters x]
-  (every? #((second %) (get x (first %))) filters))
+  (every?
+   (fn [[attr vs]]
+     (or (empty? vs) (vs (attr x))))
+   filters))
 (defn filter-cards
   [cards filters]
   (if (empty? filters)
@@ -51,12 +55,12 @@
       (swap! dest conj c))))
 
 (defn filterable-card-set
-  [cards filters dest]
-  (let [filtersc (cell filters)
+  [cards filterable dest]
+  (let [filtersc (cell (empty-filters filterable))
         cardsc (cell= (sort-by :title (filter-cards cards filtersc)))]
     (div
      (div :class "filters"
-      (map (partial filter-attribute cardsc filtersc) (sort-by first (seq d/attributes))))
+      (map (partial filter-attribute cardsc filtersc) (sort-by first filterable)))
      (loop-tpl :size 20 :bindings [card cardsc]
       (div :on-click (move-card card cards dest)
        (text "~{card}"))))))
@@ -67,7 +71,7 @@
   (h1 "Mage Wars Deck Builder")
   (div :id "deck"
    (h3 "Your Deck")
-   (filterable-card-set d/deck {} d/base-set))
+   (filterable-card-set d/deck d/attributes d/base-set))
   (div :id "base-set"
    (h3 "Base Set")
-   (filterable-card-set d/base-set {} d/deck))))
+   (filterable-card-set d/base-set d/attributes d/deck))))
