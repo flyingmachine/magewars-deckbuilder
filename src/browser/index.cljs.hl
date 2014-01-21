@@ -21,15 +21,11 @@
 
 (defn map-set-filter
   [filters x]
-  (every?
-   (fn [[attr vs]]
-     (or (empty? vs) (vs (attr x))))
-   filters))
+  (every? #((second %) ((first %) x)) filters))
 (defn filter-cards
   [cards filters]
-  (if (empty? filters)
-    cards
-    (filter (partial map-set-filter filters) cards)))
+  (let [fs (filter #(not (empty? (second %))) filters)]
+    (filter (partial map-set-filter fs) cards)))
 
 (defn filter-count
   [cards attr val]
