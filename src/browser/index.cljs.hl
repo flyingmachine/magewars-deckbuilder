@@ -49,8 +49,7 @@
   [dest c]
   (let [count {:count 1}]
     (if-let [found (some #(and (= (:title %) (:title c)) %) dest)]
-      (conj (disj dest found)
-            (merge-with + found count))
+      (conj (disj dest found) (merge-with + found count))
       (conj dest (merge c count)))))
 (defn remove-card
   [src c]
