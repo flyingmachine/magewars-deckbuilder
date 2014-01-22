@@ -3,6 +3,13 @@
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
+(defn lookup
+  [title]
+  (get d/card-map title))
+(defn lookup-all
+  [cards]
+  (map (comp lookup first) (seq cards)))
+
 (defn empty-filters
   [attrs]
   (into {} (map #(vector (first %) #{}) attrs)))
@@ -27,7 +34,11 @@
   (every? #((second %) ((first %) x)) filters))
 (defn filter-cards
   [cards filters]
-  (filter (partial map-set-filter (only-non-empty filters)) cards))
+  (filter
+   (fn [card]
+     ((partial map-set-filter (only-non-empty filters))
+      (first card)))
+   cards))
 
 (defn filter-count
   [all-cards cards filters attr val]
@@ -64,10 +75,10 @@
         cardsc (cell= (sort-by :title (filter-cards cards filtersc)))]
     (div
      (div :class "filters"
-      (map (partial filter-attribute cards cardsc filtersc) (sort-by first filterable)))
+      (map (partial filter-attribute (lookup-all @cards) cardsc filtersc) (sort-by first filterable)))
      (loop-tpl :size 20 :bindings [card cardsc]
-      (div :on-click (move-card card cards dest)
-       (text "~{card}"))))))
+       (div :on-click (move-card card cards dest)
+        (text "~{(str (lookup (first card)))} ~{(second card)}"))))))
 
 (html
  (head)

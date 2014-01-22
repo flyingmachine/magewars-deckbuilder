@@ -9,7 +9,7 @@
   {:school #{:chaos :divine :nature :elemental}
    :type #{:creature :spell :equipment}})
 
-(defc deck
+(def cards
   #{{:title "minotaur"
      :school :chaos
      :cost 12
@@ -17,10 +17,8 @@
     {:title "heal"
      :school :divine
      :cost 3
-     :type :spell}})
-
-(defc base-set
-  #{{:title "magic wand"
+     :type :spell}
+    {:title "magic wand"
      :school :elemental
      :cost 8
      :type :equipment}
@@ -36,3 +34,16 @@
      :school :chaos
      :cost 6
      :type :spell}})
+
+(def card-map
+  (reduce (fn [r [k v]] (assoc r k (first v))) {} (group-by :title cards)))
+
+(defc deck
+  {"minotaur" 1
+   "heal" 2})
+
+(defc base-set
+  {"magic wand" 2
+   "fox" 3
+   "panther" 1
+   "fireball" 4})
