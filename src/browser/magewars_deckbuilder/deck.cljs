@@ -10,34 +10,34 @@
    :type #{:creature :spell :equipment}})
 
 (defc deck
-  #{{:title "minotaur"
+  #{{:name "minotaur"
      :school :chaos
      :cost 12
      :type :creature
      :count 2}
-    {:title "heal"
+    {:name "heal"
      :school :divine
      :cost 3
      :type :spell
      :count 4}})
 
 (defc base-set
-  #{{:title "magic wand"
+  #{{:name "magic wand"
      :school :elemental
      :cost 8
      :type :equipment
      :count 5}
-    {:title "fox"
+    {:name "fox"
      :school :nature
      :cost 3
      :type :creature
      :count 1}
-    {:title "panther"
+    {:name "panther"
      :school :nature
      :cost 12
      :type :creature
      :count 2}
-    {:title "fireball"
+    {:name "fireball"
      :school :chaos
      :cost 6
      :type :spell
