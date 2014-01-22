@@ -48,7 +48,7 @@
 (defn add-card
   [dest c]
   (let [count {:count 1}]
-    (if-let [found (some #(and (= (:title %) (:title c)) %) dest)]
+    (if-let [found (some #(and (= (:name %) (:name c)) %) dest)]
       (conj (disj dest found) (merge-with + found count))
       (conj dest (merge c count)))))
 (defn remove-card
@@ -67,7 +67,7 @@
 (defn filterable-card-set
   [cards filterable dest]
   (let [filtersc (cell (empty-filters filterable))
-        cardsc (cell= (sort-by :title (filter-cards cards filtersc)))]
+        cardsc (cell= (sort-by :name (filter-cards cards filtersc)))]
     (div
       (div :class "filters"
         (map (partial filter-attribute cards cardsc filtersc) (sort-by first filterable)))
