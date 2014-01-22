@@ -13,10 +13,8 @@
    :effects [[4 9 :daze] [10 12 :stun]]
    :ranged-melee :ranged
    :traits #{:ethereal :unavoidable [:add 2 :nonliving]}
-   :count 1
    :effect-text "Attacks all objects in the zone except the caster"}
   {:name "Chain Lightning"
-   :type :attack
    :subtypes #{:lightning}
    :casting-cost 12
    :action :slow
@@ -29,10 +27,8 @@
    :effects [[5 7 :daze] [8 12 :stun]]
    :ranged-melee :ranged
    :traits #{:ethereal}
-   :count 2
    :effect-text "Each time Chain Lightning damages a target, it may attack another target. That target must be in LoS to the last target, and may be up to 1 zone away from that target. Each successive attack rolls 1 fewer attack dice, and subtraacts 1 more from the effect die roll. Chain Lightning can't attack the same target twice."}
   {:name "Electrify"
-   :type :attack
    :subtypes #{:lightning}
    :casting-cost 9
    :action :slow
@@ -45,10 +41,8 @@
    :effects [[7 8 :daze] [9 12 :stun]]
    :ranged-melee :ranged
    :traits #{:ethereal :unavoidable}
-   :count 2
    :effect-text "Attacks all objects in the zone except the caster"}
   {:name "Flameblast"
-   :type :attack
    :subtypes #{:flame}
    :casting-cost 5
    :action :quick
@@ -61,10 +55,8 @@
    :effects [[7 10 [:burn 1]] [11 12 [:burn 2]]]
    :ranged-melee :ranged
    :traits #{:defrost :unavoidable}
-   :count 2
    :effect-text ""}
   {:name "Fireball"
-   :type :attack
    :subtypes #{:flame}
    :casting-cost 8
    :action :quick
@@ -77,10 +69,8 @@
    :effects [[4 10 [:burn 1]] [11 12 [:burn 2]]]
    :ranged-melee :ranged
    :traits #{:defrost}
-   :count 3
    :effect-text ""}
   {:name "Firestorm"
-   :type :attack
    :subtypes #{:flame}
    :casting-cost 11
    :action :slow
@@ -93,10 +83,8 @@
    :effects [[4 10 [:burn 1]] [11 12 [:burn 2]]]
    :ranged-melee :ranged
    :traits #{:defrost :unavoidable}
-   :count 2
    :effect-text ""}
   {:name "Geyser"
-   :type :attack
    :subtypes #{:hydro}
    :casting-cost 3
    :action :quick
@@ -109,10 +97,8 @@
    :effects [[5 12 :daze]]
    :ranged-melee :ranged
    :traits #{:unavoidable}
-   :count 2
    :effect-text "During the Roll Dice Step of this attack, if the target has any Burn conditions on it, cancel this attack and remove all Burn conditions from the target instead."}
   {:name "Jet Stream"
-   :type :attack
    :subtypes #{:wind}
    :casting-cost 4
    :action :quick
@@ -125,10 +111,8 @@
    :effects [[4 10 :push] [11 12 :push :daze]]
    :ranged-melee :ranged
    :traits #{:ethereal [:add 2 :flying]}
-   :count 3
    :effect-text ""}
   {:name "Lightning Bolt"
-   :type :attack
    :subtypes #{:lightning}
    :casting-cost 8
    :action :quick
@@ -141,10 +125,8 @@
    :effects [[6 7 :daze] [8 12 :stun]]
    :ranged-melee :ranged
    :traits #{:ethereal [:add 2 :flying]}
-   :count 3
    :effect-text ""}
   {:name "Pillar of Light"
-   :type :attack
    :subtypes #{:light}
    :casting-cost 5
    :action :quick
@@ -157,26 +139,8 @@
    :effects [[4 10 :daze] [11 12 :stun]]
    :ranged-melee :ranged
    :traits #{:ethereal [:add 2 :nonliving]}
-   :count 3
-   :effect-text ""}
-  {:name "Pillar of Light"
-   :type :attack
-   :subtypes #{:light}
-   :casting-cost 5
-   :action :quick
-   :range [0 2]
-   :target #{:creature :conjuration}
-   :school :holy
-   :level 1
-   :attack-die 2
-   :damage-type :light
-   :effects [[4 10 :daze] [11 12 :stun]]
-   :ranged-melee :ranged
-   :traits #{:ethereal [:add 2 :nonliving]}
-   :count 3
    :effect-text ""}
   {:name "Ring of Fire"
-   :type :attack
    :subtypes #{:flame}
    :casting-cost 9
    :action :slow
@@ -189,10 +153,8 @@
    :effects [[7 10 [:burn 1]] [11 12 [:burn 2]]]
    :ranged-melee :ranged
    :traits #{:unavoidable :defrost}
-   :count 2
    :effect-text "Attacks all objects in the zone except the caster."}
   {:name "Thunderbolt"
-   :type :attack
    :subtypes #{:lightning}
    :casting-cost 10
    :action :slow
@@ -205,5 +167,4 @@
    :effects [[4 6 :daze] [7 12 :stun]]
    :ranged-melee :ranged
    :traits #{:ethereal}
-   :count 1
    :effect-text ""}}
