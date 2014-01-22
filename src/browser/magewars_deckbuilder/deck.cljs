@@ -13,26 +13,32 @@
   #{{:title "minotaur"
      :school :chaos
      :cost 12
-     :type :creature}
+     :type :creature
+     :count 2}
     {:title "heal"
      :school :divine
      :cost 3
-     :type :spell}})
+     :type :spell
+     :count 4}})
 
 (defc base-set
   #{{:title "magic wand"
      :school :elemental
      :cost 8
-     :type :equipment}
+     :type :equipment
+     :count 5}
     {:title "fox"
      :school :nature
      :cost 3
-     :type :creature}
+     :type :creature
+     :count 1}
     {:title "panther"
      :school :nature
      :cost 12
-     :type :creature}
+     :type :creature
+     :count 2}
     {:title "fireball"
      :school :chaos
      :cost 6
-     :type :spell}})
+     :type :spell
+     :count 2}})

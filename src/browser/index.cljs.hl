@@ -45,12 +45,26 @@
   (div (h3 (text "~{attr}"))
        (ul (map (partial filter-val all-cards cards filters attr) vals))))
 
+(defn add-card
+  [dest c]
+  (let [count {:count 1}]
+    (if-let [found (some #(and (= (:title %) (:title c)) %) dest)]
+      (conj (disj dest found)
+            (merge-with + found count))
+      (conj dest (merge c count)))))
+(defn remove-card
+  [src c]
+  (if (= 1 (:count c))
+    (disj src c)
+    (conj (disj src c)
+          (merge-with - c {:count 1}))))
+
 (defn move-card
   [card src dest]
   (fn []
     (let [c @card]
-      (swap! src disj c)
-      (swap! dest conj c))))
+      (swap! src remove-card c)
+      (swap! dest add-card c))))
 
 (defn filterable-card-set
   [cards filterable dest]
