@@ -54,10 +54,9 @@
       (conj dest (merge c count)))))
 (defn remove-card
   [src c]
-  (if (= 1 (:count c))
-    (disj src c)
-    (conj (disj src c)
-          (merge-with - c {:count 1}))))
+  (into (disj src c)
+        (if (> (:count c) 1)
+          [(merge-with - c {:count 1})])))
 
 (defn move-card
   [card src dest]
