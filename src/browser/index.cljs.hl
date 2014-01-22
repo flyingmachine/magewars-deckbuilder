@@ -5,7 +5,7 @@
 
 (defn empty-filters
   [attrs]
-  (into {} (map #(vector (first %) #{}) attrs)))
+  (into {} (map (fn [[a]] [a #{}]) attrs)))
 (defn toggle-filter!
   [filters attr val]
   (fn []
