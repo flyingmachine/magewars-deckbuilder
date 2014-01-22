@@ -15,13 +15,13 @@
 (defn only-non-empty
   [filters]
   (filter #(not (empty? (second %))) filters))
-
 (defn map-set-filter
   [filters x]
-  (every? #((second %) ((first %) x)) filters))
+  (every? #((second %) ((first %) x)) (only-non-empty filters)))
+
 (defn filter-cards
   [cards filters]
-  (filter (partial map-set-filter (only-non-empty filters)) cards))
+  (filter (partial map-set-filter filters) cards))
 
 (defn filter-count
   [all-cards cards filters attr val]
@@ -30,7 +30,7 @@
             (filter #(= (attr %) val) cards)
             (filter
              #(and (= (attr %) val)
-                   ((partial map-set-filter (only-non-empty (dissoc filters attr))) %))
+                   ((partial map-set-filter (dissoc filters attr)) %))
              all-cards)))))
 
 (defn filter-val
@@ -69,19 +69,19 @@
   (let [filtersc (cell (empty-filters filterable))
         cardsc (cell= (sort-by :title (filter-cards cards filtersc)))]
     (div
-     (div :class "filters"
-      (map (partial filter-attribute cards cardsc filtersc) (sort-by first filterable)))
-     (loop-tpl :size 20 :bindings [card cardsc]
-      (div :on-click (move-card card cards dest)
-       (text "~{card}"))))))
+      (div :class "filters"
+        (map (partial filter-attribute cards cardsc filtersc) (sort-by first filterable)))
+      (loop-tpl :size 20 :bindings [card cardsc]
+        (div :on-click (move-card card cards dest)
+          (text "~{card}"))))))
 
 (html
  (head)
  (body
-  (h1 "Mage Wars Deck Builder")
-  (div :id "deck"
-   (h3 "Your Deck")
-   (filterable-card-set d/deck d/attributes d/base-set))
-  (div :id "base-set"
-   (h3 "Base Set")
-   (filterable-card-set d/base-set d/attributes d/deck))))
+   (h1 "Mage Wars Deck Builder")
+   (div :id "deck"
+     (h3 "Your Deck")
+     (filterable-card-set d/deck d/attributes d/base-set))
+   (div :id "base-set"
+     (h3 "Base Set")
+     (filterable-card-set d/base-set d/attributes d/deck))))
