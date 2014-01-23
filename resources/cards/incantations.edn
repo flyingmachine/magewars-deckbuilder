@@ -8,7 +8,7 @@
    :range [0 2]
    :targets #{[:creature :non-mage]}
    :school [:arcane 3]
-   :endowments #{:banish}
+   :effects #{:banish}
    :traits #{}
    :description "Teleport target creature out of the arena. Place 3 Banish tokens on it. Remove 1 Banish token each Upkeep Phase. When the final token is removed, return the creature to the last zone it was in. While out of the arena, this creature cannot take any action, its action marker remains unchanged, and it can only be affected by attached spells, conditions, or its own traits and abilities."}
   {:name "Battle Fury"
@@ -18,7 +18,7 @@
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
-   :endowments #{[:melee :buff]}
+   :effects #{[:melee :buff]}
    :traits #{}
    :description "The next time this round the target creature makes a melee attack, after that attack action it may immediately make another quick action melee attack"}
   {:name "Call of the Wild"
@@ -29,7 +29,7 @@
    :targets #{:arena}
    :secondary-targets #{[:creature :animal]}
    :school [:nature 1]
-   :endowments #{[:melee :buff]}
+   :effects #{[:melee :buff]}
    :traits #{}
    :description "All friendly animal creatures in the arena gain the Melee +1 trait until the end of the round."}
   {:name "Charge"
@@ -39,7 +39,7 @@
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
-   :endowments #{:fast :charge}
+   :effects #{:fast :charge}
    :traits #{}
    :description "Target gains the Fast and Charge +1 traits until the end of the round."}
   {:name "Dispel"
@@ -49,7 +49,7 @@
    :range [0 2]
    :targets #{[:enchantment :revealed]}
    :school [:arcane 1]
-   :endowments #{:destroy}
+   :effects #{:destroy}
    :traits #{}
    :description "Destroy the target. X = total mana cost of target enchantment (casting plus reveal cost)."}
   {:name "Dissolve"
@@ -60,7 +60,7 @@
    :targets #{[:creature :mage]}
    :secondary-targets #{:equipment}
    :school [:water 1]
-   :endowments #{:destroy}
+   :effects #{:destroy}
    :traits #{}
    :description "When you cast Dissolve, choose an equipment object attached to target Mage. X = equipment's casting cost. Then, destroy the chosen equipment."}
   {:name "Drain Life"
@@ -70,7 +70,7 @@
    :range [0 1]
    :targets #{[:creature :living]}
    :school [:dark 3]
-   :endowments #{:heal :direct-damage}
+   :effects #{:heal :direct-damage}
    :traits #{:magecast :dark-mage-only}
    :description "The target receives 5 attack dice of direct damage. The caster also heals damage equal to the damage received by the target creature."}
   {:name "Drain Power"
@@ -80,7 +80,7 @@
    :range [0 2]
    :targets #{[:creature :mage]}
    :school [:arcane 3]
-   :endowments #{:mana-gain :mana-loss}
+   :effects #{:mana-gain :mana-loss}
    :traits #{:magecast}
    :description "Roll 8 attack dice. The target loses that much mana from his mana supply. The caster gains mana equal to the mana lost."}
   {:name "Evade"
@@ -90,7 +90,7 @@
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
-   :endowments #{:elusive}
+   :effects #{:elusive}
    :traits #{}
    :description "Target gains the Elusive trait until the end of the round."}
   {:name "Explode"
@@ -114,7 +114,7 @@
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
-   :endowments #{:elusive}
+   :effects #{:elusive}
    :traits #{}
    :description "Target gains the Elusive trait until the end of the round."}
   {:name "Force Push"
@@ -124,7 +124,7 @@
    :range [0 2]
    :targets #{:creature}
    :school [:mind 1]
-   :endowments #{:push :move}
+   :effects #{:push :move}
    :traits #{}
    :description "Target creature is Pushed 1 zone in the direction of your choice. This will **not** Push it through a wall with the Passage Attacks trait, **unless** you pay an additional 3 mana when this spell is cast."}
   {:name "Group Heal"
@@ -135,7 +135,7 @@
    :targets #{:zone}
    :secondary-targets #{[:creature :living :friendly]}
    :school [:holy 2]
-   :endowments #{:heal}
+   :effects #{:heal}
    :traits #{}
    :description "Heal each friendly Living creature in the target zone the amount rolled on 5 attack dice. Roll separately for each creature."}
   {:name "Heal"
@@ -145,7 +145,7 @@
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:holy 2]
-   :endowments #{:heal}
+   :effects #{:heal}
    :traits #{}
    :description "Heal target creature the amount rolled on 8 attack dice."}
   {:name "Knockdown"
@@ -155,7 +155,7 @@
    :range [0 2]
    :targets #{:creature}
    :school [:mind 1]
-   :endowments #{:incapacitated}
+   :effects #{:incapacitated}
    :traits #{}
    :description "Target is **incapacitated** until the beginning of its next Action Phase, or until the end of the round, whichever comes first. Knowckdown has no effect on Unmovable creatures."}
   {:name "Lay Hands"
@@ -165,7 +165,7 @@
    :range [0 0]
    :targets #{[:creature :living :non-mage]}
    :school [:holy 3]
-   :endowments #{:heal :cure}
+   :effects #{:heal :cure}
    :traits #{:epic :holy-mage-only}
    :description "Heal target creature the amount rolled on 12 attack dice. Remove as many condition markers as you wish from target creature by paying their removal costs."}
   {:name "Minor Heal"
@@ -175,7 +175,7 @@
    :range [0 1]
    :targets #{[:creature :living]}
    :school [:holy 1]
-   :endowments #{:heal}
+   :effects #{:heal}
    :traits #{}
    :description "Heal target creature the amount rolled on 5 attack dice."}
   {:name "Perfect Strike"
@@ -185,7 +185,7 @@
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
-   :endowments #{:unavoidable [:melee :buff]}
+   :effects #{:unavoidable [:melee :buff]}
    :traits #{:novice}
    :description "Target's next melee attack gains the **Unavoidable** trait."}
   {:name "Piercing Strike"
@@ -195,7 +195,7 @@
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
-   :endowments #{:piercing [:melee :buff]}
+   :effects #{:piercing [:melee :buff]}
    :traits #{:novice}
    :description "Target's next melee attack gains the **Piercing +3** trait."}
   {:name "Purge Magic"
@@ -206,7 +206,7 @@
    :targets #{:creature :conjuration}
    :secondary-targets #{:enchantment}
    :school [:arcane 3]
-   :endowments #{:destroy}
+   :effects #{:destroy}
    :description "Destroy all enchantments attached to target object (both hidden and revealed)."}
   {:name "Purify"
    :subtypes #{:healing}
@@ -216,7 +216,7 @@
    :targets #{[:creature :living]}
    :secondary-targets #{[:condition :poison] [:enchantment :poison]}
    :school [:holy 3]
-   :endowments #{:cure}
+   :effects #{:cure}
    :description "Remove as many *poison* **conditions** as you wish from target, paying the removal cost for each one. Then, destroy as many revealed *poision* **enchantments** from the target as you wish, paying the total mana cost (casting and reveal cost) for eaach one."}
   {:name "Resurrection"
    :subtypes #{:healing}
@@ -225,7 +225,7 @@
    :range [0 0]
    :targets #{[:creature :destroyed :living]}
    :school [:holy 4]
-   :endowments #{:resurrect}
+   :effects #{:resurrect}
    :description "Choose a destroyed Living creature from your discard pile and summon it to the caster's zone. X = target spell's mana cost plus its spell Level."}
   {:name "Rouse the Beast"
    :subtypes #{}
@@ -234,7 +234,7 @@
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
-   :endowments #{:action}
+   :effects #{:action}
    :description "Target a creature summoned this round. Flip target creature's action marker to the active side. That creature may act normally this round. You can only cast this one time per round on the same creature. X = target's Level."}
   {:name "Seeking Dispel"
    :subtypes #{:metamagic}
@@ -243,7 +243,7 @@
    :range [0 2]
    :targets #{[:enchantment :hidden]}
    :school [:arcane 1]
-   :endowments #{:destroy}
+   :effects #{:destroy}
    :description "Destroy target hidden enchantment. Controller of target enchantment cannot reveal the enchantment once Seeking Dispel has been cast."}
   {:name "Shift Enchantment"
    :subtypes #{:metamagic}
@@ -252,7 +252,7 @@
    :range [0 2]
    :targets #{:enchantment :creature}
    :school [:arcane 1]
-   :endowments #{}
+   :effects #{}
    :traits #{:novice}
    :description "Choose a destroyed Living creature from your discard pile and summon it to the caster's zone. X = target spell's mana cost plus its spell Level."}
   {:name "Sleep"
@@ -262,7 +262,7 @@
    :range [0 2]
    :targets #{[:creature :non-mage :living]}
    :school [:mind 2]
-   :endowments #{:sleep}
+   :effects #{:sleep}
    :traits #{}
    :description "Target falls asleep. Place a **Sleep** condition marker on it. Does not affect creatures iwth Psychic Immunity. Lookup value of X below:
 
@@ -278,7 +278,7 @@ Add 2 mana to the cost for each Level beyond 3."}
    :range [0 2]
    :targets #{[:enchantment :revealed] :creature}
    :school [:arcane 3]
-   :endowments #{}
+   :effects #{}
    :traits #{}
    :description "Move target revealed enchantment to a new legal target. Both the enchantment and the new target must be within range and LoS. You now control that enchantment. X = the casting & reveal cost of target enchantment, plus you pay the casting & reveal cost of attaching it to the new target (as if you just cast and revealed the spell)."}
   {:name "Teleport"
@@ -288,7 +288,7 @@ Add 2 mana to the cost for each Level beyond 3."}
    :range [0 2]
    :targets #{:creature :zone}
    :school [:arcane 2]
-   :endowments #{:teleport}
+   :effects #{:teleport}
    :traits #{}
    :description "Target creature is Teleported to the target zone. X = 3 maana per zone moved away from its current zone. You must pay at least 3 mana even if target is teleported into the same zone. This does not count as a move action for the creature."}
   {:name "Vampiric Strike"
@@ -298,6 +298,6 @@ Add 2 mana to the cost for each Level beyond 3."}
    :range [0 3]
    :targets #{[:creature :living]}
    :school [:dark 1]
-   :endowments #{:vampiric :piercing [:melee :buff]}
+   :effects #{:vampiric :piercing [:melee :buff]}
    :traits #{}
    :description "Target's next melee attack this round gains the **Vampiric** and **Piercing +1** traits."}}
