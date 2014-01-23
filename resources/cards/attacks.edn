@@ -1,170 +1,166 @@
 ;; Attacks
+
+;; common
+{:attacks {:ranged-melee :ranged}
+ :type :attack}
+
+;; notes
+;; transform by including dice, damage-type, effects, traits in
+;; attacks set
+
 #{{:name "Blinding Flash"
-   :type :attack
    :subtypes #{:light}
    :casting-cost 7
    :action :slow
    :range [0 0]
-   :target #{:zone}
+   :targets #{:zone}
    :school :holy
    :level 2
-   :attack-die 2
+   :dice 2
    :damage-type :light
-   :effects [[4 9 :daze] [10 12 :stun]]
-   :ranged-melee :ranged
-   :traits #{:ethereal :unavoidable [:add 2 :nonliving]}
-   :effect-text "Attacks all objects in the zone except the caster"}
+   :effects #{[:daze 4 9] [:stun 10 12]}
+   :traits #{:ethereal :unavoidable [:nonliving 2]}
+   :description "Attacks all objects in the zone except the caster"}
   {:name "Chain Lightning"
    :subtypes #{:lightning}
    :casting-cost 12
    :action :slow
    :range [0 1]
-   :target #{:creature, :conjuration}
+   :targets #{:creature, :conjuration}
    :school :air
    :level 3
-   :attack-die 5
+   :dice 5
    :damage-type :lightning
-   :effects [[5 7 :daze] [8 12 :stun]]
-   :ranged-melee :ranged
+   :effects #{[:daze 5 7] [:stun 8 12]}
    :traits #{:ethereal}
-   :effect-text "Each time Chain Lightning damages a target, it may attack another target. That target must be in LoS to the last target, and may be up to 1 zone away from that target. Each successive attack rolls 1 fewer attack dice, and subtraacts 1 more from the effect die roll. Chain Lightning can't attack the same target twice."}
+   :description "Each time Chain Lightning damages a target, it may attack another target. That target must be in LoS to the last target, and may be up to 1 zone away from that target. Each successive attack rolls 1 fewer attack dice, and subtraacts 1 more from the effect die roll. Chain Lightning can't attack the same target twice."}
   {:name "Electrify"
    :subtypes #{:lightning}
    :casting-cost 9
    :action :slow
    :range [0 0]
-   :target #{:zone}
+   :targets #{:zone}
    :school :air
    :level 2
-   :attack-die 4
+   :dice 4
    :damage-type :lightning
-   :effects [[7 8 :daze] [9 12 :stun]]
-   :ranged-melee :ranged
+   :effects #{[:daze 7 8] [:stun 9 12]}
    :traits #{:ethereal :unavoidable}
-   :effect-text "Attacks all objects in the zone except the caster"}
+   :description "Attacks all objects in the zone except the caster"}
   {:name "Flameblast"
    :subtypes #{:flame}
    :casting-cost 5
    :action :quick
    :range [0 1]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :flame
    :level 1
-   :attack-die 4
+   :dice 4
    :damage-type :flame
-   :effects [[7 10 [:burn 1]] [11 12 [:burn 2]]]
-   :ranged-melee :ranged
+   :effects #{[[:burn 1] 7 10} [[:burn 2] 11 12}]
    :traits #{:defrost :unavoidable}
-   :effect-text ""}
+   :description ""}
   {:name "Fireball"
    :subtypes #{:flame}
    :casting-cost 8
    :action :quick
    :range [0 2]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :flame
    :level 2
-   :attack-die 6
+   :dice 6
    :damage-type :flame
-   :effects [[4 10 [:burn 1]] [11 12 [:burn 2]]]
-   :ranged-melee :ranged
+   :effects #{[[:burn 1] 4 10} [[:burn 2] 11 12}]
    :traits #{:defrost}
-   :effect-text ""}
+   :description ""}
   {:name "Firestorm"
    :subtypes #{:flame}
    :casting-cost 11
    :action :slow
    :range [0 1]
-   :target #{:zone}
+   :targets #{:zone}
    :school :flame
    :level 3
-   :attack-die 5
+   :dice 5
    :damage-type :flame
-   :effects [[4 10 [:burn 1]] [11 12 [:burn 2]]]
-   :ranged-melee :ranged
+   :effects #{[[:burn 1] 4 10} [[:burn 2] 11 12}]
    :traits #{:defrost :unavoidable}
-   :effect-text ""}
+   :description ""}
   {:name "Geyser"
    :subtypes #{:hydro}
    :casting-cost 3
    :action :quick
    :range [0 1]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :water
    :level 1
-   :attack-die 3
+   :dice 3
    :damage-type :hydro
-   :effects [[5 12 :daze]]
-   :ranged-melee :ranged
+   :effects #{[:daze 5 12]}
    :traits #{:unavoidable}
-   :effect-text "During the Roll Dice Step of this attack, if the target has any Burn conditions on it, cancel this attack and remove all Burn conditions from the target instead."}
+   :description "During the Roll Dice Step of this attack, if the target has any Burn conditions on it, cancel this attack and remove all Burn conditions from the target instead."}
   {:name "Jet Stream"
    :subtypes #{:wind}
    :casting-cost 4
    :action :quick
    :range [0 2]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :air
    :level 1
-   :attack-die 2
+   :dice 2
    :damage-type :wind
-   :effects [[4 10 :push] [11 12 :push :daze]]
-   :ranged-melee :ranged
-   :traits #{:ethereal [:add 2 :flying]}
-   :effect-text ""}
+   :effects #{[:push 4 10] [:push :daze 11 12]}
+   :traits #{:ethereal [:flying 2]}
+   :description ""}
   {:name "Lightning Bolt"
    :subtypes #{:lightning}
    :casting-cost 8
    :action :quick
    :range [0 2]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :air
    :level 2
-   :attack-die 5
+   :dice 5
    :damage-type :lightning
-   :effects [[6 7 :daze] [8 12 :stun]]
-   :ranged-melee :ranged
-   :traits #{:ethereal [:add 2 :flying]}
-   :effect-text ""}
+   :effects #{[:daze 6 7] [:stun 8 12]}
+   :traits #{:ethereal [:flying 2]}
+   :description ""}
   {:name "Pillar of Light"
    :subtypes #{:light}
    :casting-cost 5
    :action :quick
    :range [0 2]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :holy
    :level 1
-   :attack-die 2
+   :dice 2
    :damage-type :light
-   :effects [[4 10 :daze] [11 12 :stun]]
-   :ranged-melee :ranged
-   :traits #{:ethereal [:add 2 :nonliving]}
-   :effect-text ""}
+   :effects #{[:daze 4 10] [:stun 11 12]}
+   :traits #{:ethereal [:nonliving 2]}
+   :description ""}
   {:name "Ring of Fire"
    :subtypes #{:flame}
    :casting-cost 9
    :action :slow
    :range [0 0]
-   :target #{:zone}
+   :targets #{:zone}
    :school :flame
    :level 2
-   :attack-die 5
+   :dice 5
    :damage-type :flame
-   :effects [[7 10 [:burn 1]] [11 12 [:burn 2]]]
-   :ranged-melee :ranged
+   :effects #{[[:burn 1] 7 10} [[:burn 2] 11 12}]
    :traits #{:unavoidable :defrost}
-   :effect-text "Attacks all objects in the zone except the caster."}
+   :description "Attacks all objects in the zone except the caster."}
   {:name "Thunderbolt"
    :subtypes #{:lightning}
    :casting-cost 10
    :action :slow
    :range [0 3]
-   :target #{:creature :conjuration}
+   :targets #{:creature :conjuration}
    :school :air
    :level 2
-   :attack-die 6
+   :dice 6
    :damage-type :lightning
-   :effects [[4 6 :daze] [7 12 :stun]]
-   :ranged-melee :ranged
+   :effects #{[:daze 4 6] [:stun 7 12]}
    :traits #{:ethereal}
-   :effect-text ""}}
+   :description ""}}

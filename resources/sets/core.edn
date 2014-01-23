@@ -1,14 +1,85 @@
-;; attacks
-#{{"Blinding Flash" 1}
-  {"Chain Lightning" 2}
-  {"Electrify" 2}
-  {"Fireball" 3}
-  {"Firestorm" 2}
-  {"Flameblast" 2}
-  {"Geyser" 2}
-  {"Jet Stream" 3}
-  {"Lightning Bolt" 3}
-  {"Pillar of Light" 3}
-  {"Ring of Fire" 2}
-  {"Thunderbolt" 1}}
+{ 
+ ;; attacks
+ "Blinding Flash" 1
+ "Chain Lightning" 2
+ "Electrify" 2
+ "Fireball" 3
+ "Firestorm" 2
+ "Flameblast" 2
+ "Geyser" 2
+ "Jet Stream" 3
+ "Lightning Bolt" 3
+ "Pillar of Light" 3
+ "Ring of Fire" 2
+ "Thunderbolt" 1
 
+ ;; incantations
+ "Banish" 2
+ "Battle Fury" 2
+ "Call of the Wild" 3
+ "Charge" 2
+ "Dispel" 5
+ "Dissolve" 4
+ "Drain Life" 2
+ "Evade" 2
+ "Explode" 2
+ "Force Push" 3
+ "Group Heal" 2
+ "Heal" 3
+ "Knockdown" 2
+ "Lay Hands" 1
+ "Minor Heal" 5
+ "Perfect Strike" 2
+ "Piercing Strike" 2
+ "Purge Magic" 2
+ "Purify" 1
+ "Resurrection" 1
+ "Rouse the Beast" 2
+ "Seeking Dispel" 3
+ "Shift Enchantment" 2
+ "Sleep" 2
+ "Steal Enchaantment" 2
+ "Teleport" 3
+ "Vampiric Strike" 2
+
+ ;; enchantments
+ 
+ "Agony" 3
+ "Bear Strength" 3
+ "Block" 4
+ "Bull Endurance" 3
+ "Chains of Agony" 2
+ "Cheetah Speed" 2
+ "Circle of Lightning" 1
+ "Cobra Reflexes" 2
+ "Death Link" 1
+ "Decoy" 4
+ "Divine Intervention" 1
+ "Divine Protection" 2
+ "Eagle Wings" 2
+ "Enfeeble" 2
+ "Essence Drain" 3
+ "Force Hold" 2
+ "Force Orb" 1
+ "Force Sword" 1
+ "Ghoul Rot" 2
+ "Harmonize" 3
+ "Hawkeye" 2
+ "Hellfire Trap" 2
+ "Jinx" 2
+ "Magebane" 1
+ "Maim Wings" 2
+ "Marked for Death" 2
+ "Mongoose Agility" 2
+ "Nullify" 4
+ "Pacify" 2
+ "Poisoned Blood" 2
+ "Regrowth" 2
+ "Retaliate" 2
+ "Reverse Attack" 2
+ "Reverse Magic" 2
+ "Rhino Hide" 3
+ "Sacred Ground" 2
+ "Teleport Trap" 2
+ "Turn to Stone" 2
+}
