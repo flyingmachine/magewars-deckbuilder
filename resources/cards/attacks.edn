@@ -14,8 +14,7 @@
    :action :slow
    :range [0 0]
    :targets #{:zone}
-   :school :holy
-   :level 2
+   :school [:holy 2]
    :dice 2
    :damage-type :light
    :effects #{[:daze 4 9] [:stun 10 12]}
@@ -27,8 +26,7 @@
    :action :slow
    :range [0 1]
    :targets #{:creature, :conjuration}
-   :school :air
-   :level 3
+   :school [:air 3]
    :dice 5
    :damage-type :lightning
    :effects #{[:daze 5 7] [:stun 8 12]}
@@ -40,8 +38,7 @@
    :action :slow
    :range [0 0]
    :targets #{:zone}
-   :school :air
-   :level 2
+   :school [:air 2]
    :dice 4
    :damage-type :lightning
    :effects #{[:daze 7 8] [:stun 9 12]}
@@ -53,8 +50,7 @@
    :action :quick
    :range [0 1]
    :targets #{:creature :conjuration}
-   :school :flame
-   :level 1
+   :school [:flame 1]
    :dice 4
    :damage-type :flame
    :effects #{[[:burn 1] 7 10} [[:burn 2] 11 12}]
@@ -66,8 +62,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature :conjuration}
-   :school :flame
-   :level 2
+   :school [:flame 2]
    :dice 6
    :damage-type :flame
    :effects #{[[:burn 1] 4 10} [[:burn 2] 11 12}]
@@ -79,8 +74,7 @@
    :action :slow
    :range [0 1]
    :targets #{:zone}
-   :school :flame
-   :level 3
+   :school [:flame 3]
    :dice 5
    :damage-type :flame
    :effects #{[[:burn 1] 4 10} [[:burn 2] 11 12}]
@@ -92,8 +86,7 @@
    :action :quick
    :range [0 1]
    :targets #{:creature :conjuration}
-   :school :water
-   :level 1
+   :school [:water 1]
    :dice 3
    :damage-type :hydro
    :effects #{[:daze 5 12]}
@@ -105,8 +98,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature :conjuration}
-   :school :air
-   :level 1
+   :school [:air 1]
    :dice 2
    :damage-type :wind
    :effects #{[:push 4 10] [:push :daze 11 12]}
@@ -118,8 +110,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature :conjuration}
-   :school :air
-   :level 2
+   :school [:air 2]
    :dice 5
    :damage-type :lightning
    :effects #{[:daze 6 7] [:stun 8 12]}
@@ -131,8 +122,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature :conjuration}
-   :school :holy
-   :level 1
+   :school [:holy 1]
    :dice 2
    :damage-type :light
    :effects #{[:daze 4 10] [:stun 11 12]}
@@ -144,8 +134,7 @@
    :action :slow
    :range [0 0]
    :targets #{:zone}
-   :school :flame
-   :level 2
+   :school [:flame 2]
    :dice 5
    :damage-type :flame
    :effects #{[[:burn 1] 7 10} [[:burn 2] 11 12}]
@@ -157,8 +146,7 @@
    :action :slow
    :range [0 3]
    :targets #{:creature :conjuration}
-   :school :air
-   :level 2
+   :school [:air 2]
    :dice 6
    :damage-type :lightning
    :effects #{[:daze 4 6] [:stun 7 12]}

@@ -8,8 +8,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :dark
-   :level 1
+      :school [:dark 1]
    :endowments #{[:melee :debuff]}
    :traits #{}
    :description "Whenever this creature makes a **non-spell** ranged or melee attack, it rolls 2 fewer attack dice."}
@@ -20,8 +19,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{[:melee :buff]}
    :traits #{}
    :description "This creature gains the **Melee +2** trait."}
@@ -32,8 +30,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :mind
-   :level 1
+   :school [:mind 1]
    :endowments #{:defense}
    :traits #{:mandatory}
    :description "When this creature is attacked, you **must** reveal Block during the Avoid Attack Step. Block counts as a Defense, and the attack is avoided. Then destroy Block. If the attack is **Unavoidable**, destroy Block without effect."}
@@ -44,8 +41,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{[:life :buff]}
    :traits #{}
    :description "This creature gainst **Life +4**"}
@@ -56,8 +52,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{[:move :debuff] :direct-damage}
    :traits #{}
    :description "Each time this creature takes a move action, it receives 1 direct damage."}
@@ -68,8 +63,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{:fast}
    :traits #{}
    :description "This creature gains the **Fast** trait."}
@@ -80,8 +74,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :air
-   :level 1
+   :school [:air 1]
    :endowments #{:damage-barrier}
    :traits #{[:magebind 2] :attack}
    :attacks #{{:dice 2
@@ -96,8 +89,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 2
+   :school [:nature 2]
    :endowments #{:defense}
    :traits #{[:magebind 2]}
    :defenses #{{:effectiveness 7
@@ -110,8 +102,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living :non-mage]}
-   :school :dark
-   :level 2
+   :school [:dark 2]
    :endowments #{[:direct-damage :recipient]}
    :traits #{:magecast :unique :dark-mage-only}
    :description "Each Upkeep Phase, the controller of Death Link may heal up to 2 damage from his Mage and place it on this creature as direct damage, regardless of distance or LoS."}
@@ -122,8 +113,7 @@
    :action :quick
    :range [0 2]
    :targets #{:zone :object}
-   :school :mind
-   :level 1
+   :school [:mind 1]
    :endowments #{}
    :traits #{:novice}
    :description "When Decoy is revealed, destroy it. When this spell is destroyed its controller gains 2 mana."}
@@ -134,8 +124,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :holy
-   :level 3
+   :school [:holy 3]
    :endowments #{:teleport}
    :traits #{:holy-mage-only :epic}
    :description "When this spell is revealed, you may Teleport this creature to any zone in the Arena, then destroy Divine Intervention."}
@@ -146,8 +135,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :holy
-   :level 1
+   :school [:holy 1]
    :endowments #{[:aegis 1]}
    :traits #{[:magebind 2]}
    :description "This creature gains the **Aegis 1** trait."}
@@ -158,8 +146,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living :non-mage]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{:flying}
    :traits #{}
    :description "This creature gains the **Flying** trait."}
@@ -170,8 +157,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living :non-mage]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{:flying}
    :traits #{}
    :description "This creature gains the **Flying** trait."}
@@ -182,8 +168,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :non-mage]}
-   :school :arcane
-   :level 2
+   :school [:arcane 2]
    :endowments #{[:upkeep 2]}
    :traits #{}
    :description "This creature gains the **Upkeep +2** trait."}
@@ -194,8 +179,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :mind
-   :level 2
+   :school [:mind 2]
    :endowments #{:restrained :unmovable}
    :traits #{[:upkeep 3]}
    :description "This creature is **Restrained**, and gains the **Unmovable** trait. This does not affect creatures with the Uncontainable trait."}
@@ -206,8 +190,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :mind
-   :level 1
+   :school [:mind 1]
    :endowments #{:defense}
    :traits #{[:magebind 1]}
    :defenses #{{:effectiveness 8
@@ -221,8 +204,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :mind
-   :level 1
+   :school [:mind 1]
    :endowments #{:defense}
    :traits #{[:magebind 1]}
    :defenses #{{:effectiveness 8
@@ -236,8 +218,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{[:direct-damage :recipient] :upkeep}
    :traits #{[:magebind 2]}
    :description "Each Upkeep Phase, this creature receives 2 direct damage"}
@@ -248,8 +229,7 @@
    :action :quick
    :range [0 2]
    :targets #{:object}
-   :school :arcane
-   :level 1
+   :school [:arcane 1]
    :endowments #{[:channeling 1]}
    :traits #{[:magebind 2]}
    :description "Harmonize can only target an object that has the Channeling attribute. This object gains **Channeling +1**"}
@@ -260,8 +240,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{[:ranged 1]}
    :traits #{}
    :description "This creature gains the **Ranged +1** trait."}
@@ -273,8 +252,7 @@
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :enemy]}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{}
    :traits #{:mandatory :attack}
    :attacks #{{:dice 4
@@ -289,8 +267,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :arcane
-   :level 1
+   :school [:arcane 1]
    :endowments #{:counterspell}
    :traits #{:mandatory}
    :description "When this creature casts a **quick** spell, you **must** reveal Jinx during the Counter Spell Step. That spell is canceled and is returned to its owner's spellbook. Any mana spent to cast that spell is refunded to the caster's mana supply. Then, destroy jinx."}
@@ -301,8 +278,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{[:direct-damage :recipient]}
    :traits #{}
    :description "Each time this creature casts and resolves a spell, it receives 1 direct damage."}
@@ -313,8 +289,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{[:flying :debuff]}
    :traits #{}
    :description "This creature loses the **Flying** trait."}
@@ -325,8 +300,7 @@
    :action :quick
    :range [0 2]
    :targets #{:creature}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{[:defense :debuff]}
    :traits #{[:magebind 2]}
    :description "All creatures gain +1 attack die when attacking this creature. Creatures can only gain this bonus for the first attack they make each round against this creature."}
@@ -337,8 +311,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{:elusive}
    :traits #{}
    :description "This creature gains the **Elusive** trait."}
@@ -349,8 +322,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :arcane
-   :level 1
+   :school [:arcane 1]
    :endowments #{:counterspell}
    :traits #{:mandatory}
    :description "When this creature is targeted by an incantation or enchantment spell controlled by an opponent, you **must** reveal Nullify during the Counter Spell Step. That spell is countered. Then, destroy Nullify."}
@@ -361,8 +333,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :non-mage]}
-   :school :holy
-   :level 1
+   :school [:holy 1]
    :endowments #{[:melee :debuff] [:ranged :debuff]}
    :traits #{}
    :description "Each round, the first time this creature makes a melee or ranged attack, its controller must pay 2 mana during te Declare Attack Step, or else the attack is canceled. Pacify does not affect **counterstrikes**."}
@@ -373,8 +344,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :dark
-   :level 1
+   :school [:dark 1]
    :endowments #{:finite-life}
    :traits #{}
    :description "This creature gains the **Finite Life** trait."}
@@ -385,8 +355,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 1
+   :school [:nature 1]
    :endowments #{[:regenerate 2]}
    :traits #{[:magebind 1]}
    :description "This creature gains the **Regenerate 2** trait."}
@@ -397,8 +366,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :war
-   :level 1
+   :school [:war 1]
    :endowments #{:counterstrike [:melee :buff]}
    :traits #{}
    :description "This creature's quick action melee attacks gain the **Counterstrike** trait. The first time it makes a Counterstrike attack, destroy Retaliate."}
@@ -409,8 +377,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :mind
-   :level 2
+   :school [:mind 2]
    :endowments #{}
    :traits #{:mandatory}
    :description "When this creature is attacked, you **must** reveal Reverse Attack during the Avoid Attack Step. The attack is avoided and then redirected back to the attacker, who now becomes the target of that attack for the next 2 steps (Roll Dice and Damage and Effects). Then, destroy Reverse Attack. If the attack is **Unavoidable**, destroy Reverse Attack without effect."}
@@ -421,8 +388,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
-   :school :arcane
-   :level 2
+   :school [:arcane 2]
    :endowments #{}
    :traits #{:mandatory}
    :description "When this creature is targeted by an incantation or enchantment spell controlled by an opponent, you **must** reveal Reverse Magic during the Counter Spell Step. Redirect it back to the caster, who now becomes the target of the spell. You control that spell, and may make new choices, paying additional mana costs if any. Then, destroy Reverse Magic."}
@@ -433,8 +399,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :nature
-   :level 2
+   :school [:nature 2]
    :endowments #{[:armor 2]}
    :traits #{[:magebind 1]}
    :description "This creature gains **Armor +2**."}
@@ -446,8 +411,7 @@
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :living :friendly]}
-   :school :holy
-   :level 2
+   :school [:holy 2]
    :endowments #{[:aegis 1]}
    :traits #{}
    :description "All friendly Living creatures in this zone gain the **Aegis 1** trait."}
@@ -459,8 +423,7 @@
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :living :friendly]}
-   :school :holy
-   :level 2
+   :school [:holy 2]
    :endowments #{[:aegis 1]}
    :traits #{}
    :description "All friendly Living creatures in this zone gain the **Aegis 1** trait."}
@@ -472,12 +435,10 @@
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :enemy]}
-   :school :arcane
-   :level 1
+   :school [:arcane 1]
    :endowments #{}
    :traits #{:mandatory}
    :description "Teleport Trap can only target a zone without enemy creatures. When an enemy creature enters the zone, you **must** reveal Teleport Trap. That creature is immediately teleported to a zone of your choice, up to 2 zones away. Then, destroy Teleport Trap."}
-  ;; TODO is arcane 2, stone 1
   {:name "Turn to Stone"
    :subtypes #{:transform}
    :casting-cost 2
@@ -485,8 +446,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :corporeal :non-mage]}
-   :school :arcane
-   :level 2
+   :school [[:arcane 2] [:stone 1]]
    :endowments #{:incapacitated [:armor 6]}
    :traits #{[:upkeep 4]}
    :description "This creature is **Incapacitated**, and gains **Armor +6**. You cannot reveal Turn to Stone during an action, such as an attack or spell."}
@@ -497,8 +457,7 @@
    :action :quick
    :range [0 2]
    :targets #{[:creature :living]}
-   :school :dark
-   :level 2
+   :school [:dark 2]
    :endowments #{[:melee :buff] :vampiric}
    :traits #{}
    :description "This creature's melee attacks gain the **Vampiric** trait."}
