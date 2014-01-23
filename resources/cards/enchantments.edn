@@ -1,8 +1,6 @@
 ;; common
 {:type :enchantment}
 
-;; TODO 
-
 #{{:name "Agony"
    :subtypes #{:curse}
    :casting-cost 2

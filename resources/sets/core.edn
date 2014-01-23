@@ -43,7 +43,6 @@
  "Vampiric Strike" 2
 
  ;; enchantments
- 
  "Agony" 3
  "Bear Strength" 3
  "Block" 4
@@ -82,4 +81,7 @@
  "Sacred Ground" 2
  "Teleport Trap" 2
  "Turn to Stone" 2
+ "Vampirism" 2
+
+ 
 }
