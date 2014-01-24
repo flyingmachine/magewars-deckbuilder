@@ -47,7 +47,7 @@
   {:name "Flameblast"
    :subtypes #{:flame}
    :casting-cost 5
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{:creature :conjuration}
    :school [:flame 1]
@@ -59,7 +59,7 @@
   {:name "Fireball"
    :subtypes #{:flame}
    :casting-cost 8
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature :conjuration}
    :school [:flame 2]
@@ -83,7 +83,7 @@
   {:name "Geyser"
    :subtypes #{:hydro}
    :casting-cost 3
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{:creature :conjuration}
    :school [:water 1]
@@ -95,7 +95,7 @@
   {:name "Jet Stream"
    :subtypes #{:wind}
    :casting-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature :conjuration}
    :school [:air 1]
@@ -107,7 +107,7 @@
   {:name "Lightning Bolt"
    :subtypes #{:lightning}
    :casting-cost 8
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature :conjuration}
    :school [:air 2]
@@ -119,7 +119,7 @@
   {:name "Pillar of Light"
    :subtypes #{:light}
    :casting-cost 5
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature :conjuration}
    :school [:holy 1]

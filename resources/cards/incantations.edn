@@ -70,7 +70,7 @@
    :range [0 1]
    :targets #{[:creature :living]}
    :school [:dark 3]
-   :effects #{:heal :direct-damage}
+   :effects #{:heal :direct-damage :drain}
    :traits #{:magecast :dark-mage-only}
    :description "The target receives 5 attack dice of direct damage. The caster also heals damage equal to the damage received by the target creature."}
   {:name "Drain Power"
@@ -80,7 +80,7 @@
    :range [0 2]
    :targets #{[:creature :mage]}
    :school [:arcane 3]
-   :effects #{:mana-gain :mana-loss}
+   :effects #{:mana-drain}
    :traits #{:magecast}
    :description "Roll 8 attack dice. The target loses that much mana from his mana supply. The caster gains mana equal to the mana lost."}
   {:name "Evade"

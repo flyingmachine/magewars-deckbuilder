@@ -1,5 +1,5 @@
 { 
- ;; attacks
+ ;; Attacks
  "Blinding Flash" 1
  "Chain Lightning" 2
  "Electrify" 2
@@ -13,7 +13,7 @@
  "Ring of Fire" 2
  "Thunderbolt" 1
 
- ;; incantations
+ ;; Incantations
  "Banish" 2
  "Battle Fury" 2
  "Call of the Wild" 3
@@ -42,7 +42,7 @@
  "Teleport" 3
  "Vampiric Strike" 2
 
- ;; enchantments
+ ;; Enchantments
  "Agony" 3
  "Bear Strength" 3
  "Block" 4
@@ -83,5 +83,98 @@
  "Turn to Stone" 2
  "Vampirism" 2
 
- 
+ ;; Creatures
+ "Adramelech, Lord of Fire" 1
+ "Asyran Cleric" 4
+ "Bitterwood Fox" 4
+ "Blue Gremlin" 2
+ "Brogan Bloodstone" 1
+ "Cervere, The Forest Shadow" 1
+ "Darkfenne Bat" 3
+ "Darkfenne Hydra" 2
+ "Dark Pact Slayer" 2
+ "Emerald Tegu" 2
+ "Fellella, Pixie Familiar" 1
+ "Feral Bobcat" 2
+ "Firebrand Imp" 3
+ "Flaming Hellion" 2
+ "Goran, Werewolf Pet" 1
+ "Gorgon Archer" 1
+ "Gray Angel" 2
+ "Highland Unicorn" 2
+ "Huginn, Raven Familiar" 1
+ "Knight of Westlock" 2
+ "Malacoda" 1
+ "Mana Leech" 3
+ "Moonglow Faerie" 2
+ "Necropian Vampiress" 1
+ "Redclaw, Alpha Male" 1
+ "Royal Archer" 2
+ "Samandriel, Angel of Light" 1
+ "Skeletal Sentry" 2
+ "Sosruko, Ferret Companion" 1
+ "Steelclaw Grizzly" 1
+ "Stonegaze Basilisk" 1
+ "Tarok, the Skyhunter" 1
+ "Thunderift Falcon" 2
+ "Timber Wolf" 3
+ "Valshalla, Lightning Angel" 1
+ "Whirling Spirit" 1
+
+ ;; Equipment
+ "Arcane Ring" 1
+ "Bearskin" 1
+ "Crown of Protection" 1
+ "Dawnbreaker Ring" 1
+ "Deflection Bracers" 1
+ "Demonhide Armor" 1
+ "Dragonscale Hauberk" 1
+ "Elemental Cloak" 2
+ "Elemental Wand" 2
+ "Enchanter's Ring" 1
+ "Fireshaper Ring" 1
+ "Gauntlets of Strength" 1
+ "Helm of Fear" 1
+ "Ivarium Longbow" 1
+ "Lash of Hellfire" 1
+ "Leather Boots" 1
+ "Leather Gloves" 1
+ "Lightning Ring" 1
+ "Mage Staff" 1
+ "Mage Wand" 2
+ "Moloch's Torment" 1
+ "Moonglow Amulet" 2
+ "Regrowth Belt" 1
+ "Ring of Asyra" 1
+ "Ring of Beasts" 1
+ "Ring of Curses" 1
+ "Staff of Asyra" 1
+ "Staff of Beasts" 1
+ "Staff of the Arcanum" 1
+ "Suppression Cloak" 1
+
+ ;; Conjurations
+ "Animal Kinship" 1
+ "Battle Forge" 2
+ "Deathlock" 1
+ "Fog Bank" 2
+ "Gate to Hell" 1
+ "Gate to Voltari" 1
+ "Hand of Bim-Shalla" 1
+ "Idol of Pestilence" 1
+ "Lair" 1
+ "Mana Crystal" 5
+ "Mana Flower" 5
+ "Mana Siphon" 1
+ "Mohktari, Great Tree of Life" 1
+ "Mordok's Obelisk" 1
+ "Pentagram" 1
+ "Poison Gas Cloud" 2
+ "Sacrificial Altar" 1
+ "Suppression Orb" 1
+ "Temple of Asyra" 1
+ "Temple of Light" 1
+ "Temple of the Dawnbreaker" 1
+ "Wall of Fire" 2
+ "Wall of Stone" 2
 }

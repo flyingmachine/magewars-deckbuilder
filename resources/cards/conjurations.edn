@@ -1,0 +1,246 @@
+;; common
+{:type :equipment
+ :targets #{:zone}
+ :speed :quick
+ :range [0 1]}
+
+#{{:name "Animal Kinship"
+   :subtypes #{:totem}
+   :secondary-targets #{[:creature :animal] [:creature :mage]}
+   :casting-cost 8
+   :school [:nature 2]
+   :armor 3
+   :life 7
+   :effects #{[:melee 1] [:armor 1] [:tough -2] :climbing :elusive}
+   :traits #{:zone-exclusive :beastmaster-only}
+   :description "As long as you control any of these *animal* creatures, your Mage gains these traits and abilitities:
+
+* Canine: **Melee +1**
+* Reptile: **Armor +1**
+* Bear: **Tough -2**
+* Ape: **Climbing**
+* Cat: **Elusive**"}
+  {:name "Battle Forge"
+   :subtypes #{:structure}
+   :casting-cost 8
+   :school [[:war 2] [:flame 1]]
+   :armor 4
+   :life 6
+   :channeling 1
+   :effects #{}
+   :traits #{:zone-exclusive :spawnpoint [:immunity :flame] [:damage-mod :hydro 3]}
+   :description "During the Deployment Phase, Battle Forge may cast one equipment spell."}
+  {:name "Deathlock"
+   :subtypes #{:artifact}
+   :secondary-targets #{:creature :conjuration}
+   :casting-cost 9
+   :school [:dark 2]
+   :armor 2
+   :life 9
+   :effects #{:finite-life}
+   :traits #{:zone-exclusive :epic}
+   :description "All creatures and conjurations gain the **Finite Life** trait."}
+  {:name "Fog Bank"
+   :subtypes #{:cloud}
+   :casting-cost 4
+   :school [:air 1]
+   :armor -1
+   :life 4
+   :effects #{:block-los}
+   :traits #{:incorporeal :extendable}
+   :description ""}
+  {:name "Gate to Hell"
+   :subtypes #{:portal}
+   :secondary-targets #{[:creature :demon]}
+   :casting-cost 12
+   :school [:dark 6]
+   :armor 3
+   :life 11
+   :effects #{[:melee 1]}
+   :traits #{:zone-exclusive [:immunity :flame] [:damage-mod :hydro 3] :epic :warlock-only}
+   :attacks #{{:name "Open the Gate"
+               :dice 4
+               :damage-type :flame
+               :effects #{[[:burn 1] 5 10} [[:burn 2] 11 12}}
+               :traits #{:unavoidable :defrost}
+               :ranged-melee :melee
+               :speed :slow}}
+   :description "All *demon* creatures gain **Melee +1**. Once per game, as a full action, you may pay 12 mana to \"Open the Gate\", and make the above attack against each non-Flying creature up to 2 zones away from the Gate. Once open, whenever you summon a *demon* creature, you may place it in the Gate's zone, instead of your zone."}
+  {:name "Gate to Voltari"
+   :subtypes #{:portal}
+   :casting-cost 14
+   :school [:arcane 4]
+   :armor 2
+   :life 14
+   :channeling 1
+   :effects #{}
+   :traits #{:zone-exclusive :spawnpoint :epic :wizard-only}
+   :description "When Gate to Voltari comes into play, choose an opponent Mage. Whenever that Mage casts and resolves a spell, place 1 mana on Gate. During the Deployment phase, if there are 3 or more mana on Gate, it may summon one Corporeal *Arcane* creature."}
+  {:name "Hand of Bim-Shalla"
+   :subtypes #{:temple}
+   :casting-cost 5
+   :school [:holy 1]
+   :armor 2
+   :life 5
+   :effects #{[:armor 1] [:melee 1] :heal}
+   :traits #{:zone-exclusive}
+   :description "Once each round, before or after any friendly creature's Action phase, you may give a Living creature **Armor +1** or the **Melee +1** trait until the end of the round, or you may **heal 1** damage from it. Use a ready marker to keep track of this ability."}
+  {:name "Idol of Pestilence"
+   :subtypes #{:artifact}
+   :casting-cost 9
+   :school [:dark 2]
+   :armor 1
+   :life 11
+   :effects #{:direct-damage}
+   :traits #{:zone-exclusive :legendary :epic}
+   :description "During the Upkeep Phase, each Living creature receives 1 point of direct *poison* damage."}
+  {:name "Lair"
+   :subtypes #{:portal}
+   :casting-cost 15
+   :school [:nature 4]
+   :armor 3
+   :life 13
+   :channeling 2
+   :effects #{}
+   :traits #{:zone-exclusive :spawnpoint :epic :beastmaster-only}
+   :description "During the Deployment Phase, Lair may summon 1 *animal* creature."}
+  {:name "Mana Crystal"
+   :subtypes #{:mana}
+   :secondary-targets #{[:creature :mage]}
+   :casting-cost 5
+   :school [:arcane 1]
+   :armor 2
+   :life 6
+   :effects #{[:channeling 1]}
+   :traits #{:zone-exclusive [:immunity :flame]}
+   :description "Controller gains **Channeling +1**"}
+  {:name "Mana Flower"
+   :subtypes #{:mana :plant}
+   :secondary-targets #{[:creature :mage]}
+   :casting-cost 5
+   :school [:nature 1]
+   :armor 0
+   :life 6
+   :effects #{[:channeling 1]}
+   :traits #{:zone-exclusive [:regenerate 2] :living [:damage-mod :flame 2] [:immunity :hydro]}
+   :description "Controller gains **Channeling +1**"}
+  {:name "Mana Siphon"
+   :subtypes #{:mana :plant}
+   :secondary-targets #{[:creature :mage]}
+   :casting-cost 12
+   :school [:arcane 3]
+   :armor -1
+   :life 9
+   :effects #{[:channeling -2]}
+   :traits #{:zone-exclusive :incorporeal :epic}
+   :description "When Mana Siphon comes into play, choose a Mage up to 2 zones away and within LoS of this spell. That Mage gains **Channeling -2** as long as Mana Siphon remains in play, and regardless of where the chosen Mage is in the arena."}
+  {:name "Mohktari, Great Tree of Life"
+   :subtypes #{:plant}
+   :secondary-targets #{[:creature :friendly :living]}
+   :casting-cost 8
+   :school [:nature 2]
+   :armor 2
+   :life 8
+   :effects #{[:regenerate 2]}
+   :traits #{[:regenerate 2] :living :legendary [:damage-mod :flame 2] [:immunity :hydro]}
+   :description "All friendly Living creatures in Mohktari's zone gain the **Regenerate 2** trait."}
+  {:name "Mordok's Obelisk"
+   :subtypes #{:artifact :obelisk}
+   :secondary-targets #{[:creature :non-mage]}
+   :casting-cost 8
+   :school [:arcane 2]
+   :armor 3
+   :life 7
+   :effects #{[:upkeep 1]}
+   :traits #{:zone-exclusive :legendary :epic}
+   :description "All non-Mage creatures gain the **Upkeep +1** trait."}
+  {:name "Pentagram"
+   :subtypes #{:portal :rune}
+   :casting-cost 14
+   :school [:dark 4]
+   :armor -1
+   :life 10
+   :channeling 1
+   :traits #{:zone-exclusive :spawnpoint :incorporeal :epic :warlock-only}
+   :description "Each time a different enemy creature is attacked and damaged by a friendly creature, place 1 mana on Pentagram. Pentagram may gain a maximum of 2 mana per round this way. During the Deployment Phase, if there are 2 or more mana on Pentagram, it may summon 1 *Dar* Living creature."}
+  {:name "Poison Gas Cloud"
+   :subtypes #{:cloud :poison}
+   :casting-cost 8
+   :school [:air 2]
+   :armor -1
+   :life 5
+   :traits #{:incorporeal [:damage-mod :wind 2]}
+   :description "Each Upkeep Phase all Living creatures in Poison Gas Cloud's zone receive 2 points of direct *poison* damage. If a Living creature enters this zone, or starts its Action Phase in this zone, it may not take more than one move action this round."}
+  {:name "Rajan's Fury"
+   :subtypes #{:totem}
+   :secondary-targets #{[:creature :animal]}
+   :casting-cost 7
+   :school [:nature 2]
+   :armor 2
+   :life 7
+   :effects #{[:charge 1]}
+   :traits #{:zone-exclusive}
+   :description "All *animal* creatures gain the **Charge +1** trait."}
+  {:name "Sacrificial Altar"
+   :subtypes #{}
+   :secondary-targets #{[:creature :friendly]}
+   :casting-cost 4
+   :school [:dark 1]
+   :armor 2
+   :life 5
+   :effects #{[:melee :buff] :piercing}
+   :traits #{:zone-exclusive :dark-mage-only}
+   :description "Once per round, before or after a friendly creature's Action Phase, you may destroy a creature you **control** and **own** to give a friendly creature the **Melee +X** and **Piercing +X** trait until the end of the round. X = the destroyed creature's Level."}
+  {:name "Suppression Orb"
+   :subtypes #{:force :mana :artifact}
+   :secondary-targets #{[:creature :non-mage]}
+   :casting-cost 8
+   :school [:mind 2]
+   :armor 2
+   :life 8
+   :effects #{[:move :debuff]}
+   :traits #{:zone-exclusive :legendary :epic}
+   :description "Whenever any non-Mage creature takes a move aaction, its controller must first pay 1 mana."}
+  {:name "Temple of Asyra"
+   :subtypes #{:temple :portal}
+   :secondary-targets #{[:creature :friendly :cleric]}
+   :casting-cost 10
+   :school [:holy 3]
+   :armor 3
+   :life 9
+   :channeling 1
+   :traits #{:zone-exclusive :spawnpoint :epic :holy-mage-only}
+   :description "Up to twice per round, you may have a friendly *cleric* creature use a full action to place 1mana on Temple of Asyra. During the Deployment Phase, if there is 2 or more mana on Temple of Asyra, it may summon 1 *Holy* creature."}
+  {:name "Temple of Light"
+   :subtypes #{:temple}
+   :casting-cost 9
+   :school [:holy 2]
+   :armor 3
+   :life 8
+   :traits #{:zone-exclusive :unique}
+   :attacks #{{:name "Light Blast"
+               :dice -1
+               :damage-type :light
+               :effects #{[:stun 9 10] [:daze 11 12]}
+               :traits #{:ethereal [:extra-dice 2 [:creature :nonliving]]}
+               :ranged-melee :ranged
+               :range [0 2]
+               :speed :quick}}
+   :description "Once each round, Temple of Light may make its attack, before or after any friendly creature's Action Phase. Use a ready marker to keep track of this ability. X = the number of temples you control. Also, add X to the effect die roll when making the attack."}
+  {:name "Temple of the Dawnbreaker"
+   :subtypes #{:temple}
+   :casting-cost 8
+   :school [:holy 2]
+   :armor 3
+   :life 7
+   :traits #{:zone-exclusive}
+   :description "Once per round, you may choose and do **one** of these: Re-roll a Defense or Escape roll that you just rolled, **or**, if a friendly creature is the defender of an attack, you can re-roll the effect roll or all of the attack dice from that attack. Use a ready marker to keep track of this ability."}
+  {:name "Wall of Stone"
+   :subtypes #{:stone}
+   :casting-cost 7
+   :school [:earth 2]
+   :armor 3
+   :life 10
+   :effects #{:passage-blocked}
+   :traits #{:extendable}
+   :description ""}}

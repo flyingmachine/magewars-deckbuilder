@@ -1,0 +1,679 @@
+;; common
+{:type :creature
+ :targets #{:zone}
+ :speed :slow
+ :range [0 0]
+ :channeling 0}
+#{{:name "Adramelech, Lord of Fire"
+   :subtypes #{:demon}
+   :casting-cost 24
+   :school [[:dark 4] [:flame 2]]
+   :armor 3
+   :life 14
+   :traits #{:flying [:immunity :flame] :legendary}
+   :attacks #{{:name "Hellfire Scythe"
+               :dice 6
+               :damage-type :flame
+               :effects #{[[:burn 1] 5 9] [[:burn 2] 10 12]}
+               :traits #{:defrost}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Hellfire Sweep"
+               :dice 4
+               :damage-type :flame
+               :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
+               :traits #{:defrost :sweeping}
+               :ranged-melee :melee
+               :speed :slow}}
+   :description ""}
+  {:name "Asyran Cleric"
+   :subtypes #{:cleric}
+   :casting-cost 5
+   :school [:holy 1]
+   :armor 1
+   :life 6
+   :traits #{}
+   :attacks #{{:name "Staff"
+               :dice 2
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Healing Light"
+               :dice 1
+               :damage-type :healing
+               :effects #{:heal}
+               :traits #{}
+               :ranged-melee :ranged
+               :range [0 1]
+               :speed :slow
+               :description "Heal target Living Creature the amount rolled"}}
+   :description ""}
+  {:name "Bitterwood Fox"
+   :subtypes #{:cleric}
+   :casting-cost 5
+   :school [:nature 1]
+   :armor 0
+   :life 5
+   :traits #{:fast}
+   :attacks #{{:name "Bite"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Blue Gremlin"
+   :subtypes #{:gremlin}
+   :casting-cost 7
+   :school [:arcane 2]
+   :armor 1
+   :life 7
+   :traits #{:pest :fast :teleport}
+   :attacks #{{:name "Claws"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 8
+                :uses 1}}
+   :description "When this creature is activated, you may pay 1 mana. If you do, Gremlin gians the **Fast** trait until the end of the round, and each move action he takes this round is a Teleport to the next zone."}
+  {:name "Brogan Bloodstone"
+   :subtypes #{:knight :soldier}
+   :casting-cost 15
+   :school [:holy 4]
+   :armor 4
+   :life 11
+   :traits #{[:lightning 2] :legendary}
+   :attacks #{{:name "Vorpal Blade"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{:unavoidable [:piercing 3]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Cervere, The Forest Shadow"
+   :subtypes #{:animal :cat}
+   :casting-cost 15
+   :school [:nature 4]
+   :armor 2
+   :life 11
+   :traits #{:fast :elusive :legendary}
+   :attacks #{{:name "Claws & Bite"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 8
+                :uses 1}}
+   :description ""}
+  {:name "Darkfenne Bat"
+   :subtypes #{:animal :bat}
+   :casting-cost 5
+   :school [:dark 1]
+   :armor 0
+   :life 4
+   :traits #{:flying}
+   :attacks #{{:name "Diseased Bite"
+               :dice 2
+               :damage-type nil
+               :effects #{[:rot 9 12]}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Darkfenne Hydra"
+   :subtypes #{:serpent}
+   :casting-cost 16
+   :school [:dark 4]
+   :armor 1
+   :life 15
+   :traits #{[:regenerate 2] :slow}
+   :attacks #{{:name "Snapping Bite"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{:counterstrike}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Triple Bite"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{:triplestrike}
+               :ranged-melee :melee
+               :speed :slow}}
+   :description ""}
+  {:name "Dark Pact Slayer"
+   :subtypes #{:demon}
+   :casting-cost 13
+   :school [:dark 3]
+   :armor 2
+   :life 13
+   :traits #{[:flame -2]}
+   :attacks #{{:name "Hellsword"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 2]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Emerald Tegu"
+   :subtypes #{:animal, :reptile}
+   :casting-cost 9
+   :school [:nature 2]
+   :armor 3
+   :life 8
+   :traits #{}
+   :attacks #{{:name "Venemous Bite"
+               :dice 3
+               :damage-type nil
+               :effects #{[:rot 8 12]}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Fellella, Pixie Familiar"
+   :subtypes #{:faerie}
+   :casting-cost 12
+   :school [:nature 3]
+   :armor 0
+   :life 6
+   :channeling 1
+   :traits #{:familiar :flying :pest :legendary :nature-mage-only}
+   :attacks #{{:name "Ethereal Touch"
+               :dice 2
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 6
+                :uses -1}}
+   :description "Fellella can only cast enchantment spells"}
+  {:name "Feral Bobcat"
+   :subtypes #{:animal :cat}
+   :casting-cost 5
+   :school [:nature 1]
+   :armor 0
+   :life 4
+   :traits #{[:charge 2]}
+   :attacks #{{:name "Claws"
+               :dice 2
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 8
+                :uses 1}}
+   :description ""}
+  {:name "Firebrand Imp"
+   :subtypes #{:demon}
+   :casting-cost 5
+   :school [:dark 1]
+   :armor 0
+   :life 6
+   :traits #{[:immunity :flame]}
+   :attacks #{{:name "Hellfire Claws"
+               :dice 2
+               :damage-type :flame
+               :effects #{[[:burn 1] 8 12]}
+               :traits #{:defrost}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Flaming Hellion"
+   :subtypes #{:demon}
+   :casting-cost 13
+   :school [:dark 3]
+   :armor 2
+   :life 9
+   :traits #{[:immunity :flame]}
+   :attacks #{{:name "Flameblast"
+               :dice 3
+               :damage-type :flame
+               :effects #{[[:burn 1] 5 9] [[:burn 2] 10 12]}
+               :traits #{:defrost}
+               :ranged-melee :ranged
+               :range [1 1]
+               :speed :slow}
+              {:name "Hell Trident"
+               :dice 4
+               :damage-type :flame
+               :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
+               :traits #{:defrost}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Goran, Werewolf Pet"
+   :subtypes #{:lycanthrope :canine}
+   :casting-cost 15
+   :school [:dark 4]
+   :armor 3
+   :life 12
+   :traits #{[:bloodthirsty 1] :legendary :warlock-only}
+   :attacks #{{:name "Fangs"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Feral Claws"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{:doublestrike}
+               :ranged-melee :melee
+               :speed :slow}}
+   :description "Goran gains an additional **Bloodthirsty +1** trait while in the same zone as this controlling Mage."}
+  {:name "Gorgon Archer"
+   :subtypes #{:serpent}
+   :casting-cost 16
+   :school [:arcane 4]
+   :armor 1
+   :life 13
+   :traits #{[:regenerate 2] :slow}
+   :attacks #{{:name "Poison Bow"
+               :dice 4
+               :damage-type nil
+               :effects #{[[:weak 1] 4 9] [[:weak 2] 10 12]}
+               :traits #{}
+               :ranged-melee :ranged
+               :range [1 2]
+               :speed :slow}
+              {:name "Claws"
+               :dice 2
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Gray Angel"
+   :subtypes #{:angel}
+   :casting-cost 12
+   :school [:holy 3]
+   :armor 2
+   :life 10
+   :traits #{:flying}
+   :attacks #{{:name "Sword"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Redeeming Sacrifice"
+               :dice 6
+               :damage-type :healing
+               :effects #{}
+               :traits #{}
+               :ranged-melee :ranged
+               :speed :slow
+               :description "Heal any Living creature in the arena the amount rolled. Then, destroy Gray Angel."}}
+   :description "Goran gains an additional **Bloodthirsty +1** trait while in the same zone as this controlling Mage."}
+  {:name "Highland Unicorn"
+   :subtypes #{:animal :horse}
+   :casting-cost 13
+   :school [:holy 3]
+   :armor 2
+   :life 9
+   :effects #{[:regenerate 1]}
+   :traits #{[:regenerate 2] [:charge 2]}
+   :attacks #{{:name "Horn"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description "All friendly living creatures in the same zone as Highland Unicorn gain the **Regenerate 1** trait."}
+  {:name "Huginn, Raven Familiar"
+   :subtypes #{:animal :bird}
+   :casting-cost 11
+   :school [:arcane 3]
+   :armor 0
+   :life 5
+   :channeling 1
+   :traits #{:familiar :flying :pest :legendary :arcane-mage-only}
+   :attacks #{{:name "Beak"
+               :dice 1
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1]}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Raven's Eye"
+               :dice 0
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :ranged
+               :range [0 2]
+               :speed :quick
+               :description "Huginn may look at a target hidden enchantment. After looking, leave it face down (hidden)."}}
+   :defenses #{{:effectiveness 6
+                :uses -1}}
+   :description "Huginn can only cast Level 1-2 incantation spells."}
+  {:name "Knight of Westlock"
+   :subtypes #{:knight :soldier}
+   :casting-cost 13
+   :school [:holy 3]
+   :armor 3
+   :life 10
+   :traits #{[:lightning 2]}
+   :attacks #{{:name "Longsword"
+               :dice 5
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 8
+                :uses 1}}
+   :description ""}
+  {:name "Malacoda"
+   :subtypes #{:demon}
+   :casting-cost 16
+   :school [:dark 4]
+   :armor 3
+   :life 13
+   :traits #{:slow [:immunity :poison] :legendary}
+   :attacks #{{:name "Talons"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description "Each Upkeep Phase, all Living creatures in Malacoda's zone receive 2 points of direct *poison* damage."}
+  {:name "Mana Leech"
+   :subtypes #{:worm}
+   :casting-cost 8
+   :school [:arcane 2]
+   :armor 1
+   :life 8
+   :traits #{[:immunity :psychic]}
+   :attacks #{{:name "Leeching Bite"
+               :dice 2
+               :damage-type nil
+               :effects #{[:mana-drain 1]}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Gorging Bite"
+               :dice 3
+               :damage-type nil
+               :effects #{[:mana-drain 2]}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :slow}}
+   :description ""}
+  {:name "Moonglow Faerie"
+   :subtypes #{:faerie}
+   :casting-cost 8
+   :school [:arcane 2]
+   :armor 0
+   :life 5
+   :traits #{:flying :pest}
+   :attacks #{{:name "Zap"
+               :dice 2
+               :damage-type nil
+               :effects #{}
+               :traits #{:ethereal [:extra-dice 2 :incorporeal]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 6
+                :uses -1}}
+   :description ""}
+  {:name "Mountain Gorilla"
+   :subtypes #{:animal :ape}
+   :casting-cost 16
+   :school [:nature 4]
+   :armor 2
+   :life 16
+   :traits #{:climbing [:rage 3]}
+   :attacks #{{:name "Fists"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Necropian Vampiress"
+   :subtypes #{:vampire}
+   :casting-cost 16
+   :school [:dark 4]
+   :armor 2
+   :life 15
+   :effects #{:flying}
+   :traits #{[:frost -2]}
+   :attacks #{{:name "Fangs"
+               :dice 5
+               :damage-type nil
+               :effects #{}
+               :traits #{:vampiric}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description "When this creature is activated, you may pay 1 mana to give her the **Flying** trait until the end of her Action Phase."}
+  {:name "Redclaw, Alpha Male"
+   :subtypes #{:animal :canine}
+   :casting-cost 16
+   :school [:nature 4]
+   :armor 3
+   :life
+   :effects #{[:armor 1] [:melee 1]}
+   :traits #{:legendary}
+   :attacks #{{:name "Fangs"
+               :dice 5
+               :damage-type nil
+               :effects #{}
+               :traits #{:vampiric}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description "All other friendly *canine* creatures in the same zone as Redclaw gain **Armor +1** and the **Melee +1** trait."}
+  {:name "Royal Archer"
+   :subtypes #{:high-elf :soldier}
+   :casting-cost 12
+   :school [:holy 3]
+   :armor 1
+   :life 9
+   :traits #{}
+   :attacks #{{:name "Longbow"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1]}
+               :ranged-melee :ranged
+               :range [1 2]
+               :speed :slow}
+              {:name "Knife"
+               :dice 2
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Samandriel, Angel of Light"
+   :subtypes #{:angel}
+   :casting-cost 21
+   :school [:holy 5]
+   :armor 1
+   :life 14
+   :traits #{[:aegis 1] :flying [:immunity :light] :legendary}
+   :attacks #{{:name "The Greatsword \"Starfire\""
+               :dice 5
+               :damage-type :light
+               :effects #{[:daze 7 10] [:stun 11 12]}
+               :traits #{:ethereal [:extra-dice 1 #{:nonliving :dark}]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Skeletal Sentry"
+   :subtypes #{:undead :skeleton}
+   :casting-cost 8
+   :school [:dark 2]
+   :armor 0
+   :life 11
+   :traits #{:nonliving [:immunity :psychic]}
+   :attacks #{{:name "Short Sword"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Sosruko, Ferret Companion"
+   :subtypes #{:animal}
+   :casting-cost 7
+   :school [:nature 2]
+   :armor 0
+   :life 5
+   :traits #{:elusive :pest :legendary :beastmaster-only}
+   :attacks #{{:name "Bite"
+               :dice 2
+               :damage-type nil
+               :effects #{[:taunt 7 12]}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 5
+                :uses -1}}
+   :description ""}
+  {:name "Steelclaw Grizzly"
+   :subtypes #{:animal :bear}
+   :casting-cost 17
+   :school [:nature 4]
+   :armor 3
+   :life 15
+   :traits #{[:frost -3]}
+   :attacks #{{:name "Claws"
+               :dice 5
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1]}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Heavy Claw Strike"
+               :dice 7
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1]}
+               :ranged-melee :melee
+               :speed :slow}}
+   :description ""}
+  {:name "Stonegaze Basilisk"
+   :subtypes #{:reptile :lizard}
+   :casting-cost 12
+   :school [:arcane 3]
+   :armor 2
+   :life 10
+   :traits #{:slow}
+   :attacks #{{:name "Paralysis Beam"
+               :dice 2
+               :damage-type nil
+               :effects #{[:cripple 7 12]}
+               :traits #{}
+               :ranged-melee :ranged
+               :range [0 2]
+               :speed :slow}
+              {:name "Bite"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Tarok, the Skyhunter"
+   :subtypes #{:animal :bird}
+   :casting-cost 13
+   :school [:nature 3]
+   :armor 2
+   :life 9
+   :traits #{:flying :legendary}
+   :attacks #{{:name "Beak & Talons"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{[:piercing 1] [:extra-dice 2 :flying]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :defenses #{{:effectiveness 7
+                :uses 1
+                :restrictions #{:no-ranged}}}
+   :description ""}
+  {:name "Thunderift  Falcon"
+   :subtypes #{:animal :bird}
+   :casting-cost 6
+   :school [:nature 1]
+   :armor 0
+   :life 5
+   :traits #{:flying :fast}
+   :attacks #{{:name "Razor Beak"
+               :dice 3
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Timber Wolf"
+   :subtypes #{:animal :canine}
+   :casting-cost 9
+   :school [:nature 2]
+   :armor 2
+   :life 10
+   :traits #{}
+   :attacks #{{:name "Bite"
+               :dice 4
+               :damage-type nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description ""}
+  {:name "Valshalla, Lightning Angel"
+   :subtypes #{:animal :canine}
+   :casting-cost 21
+   :school [:holy 5]
+   :armor 1
+   :life 14
+   :effects #{[:melee :buff]}
+   :traits #{[:aegis 1] :flying [:lightning -2] :legendary}
+   :attacks #{{:name "Lightning Sword"
+               :dice 4
+               :damage-type :lightning
+               :effects #{[:daze 7 8] [:stun 9 12]}
+               :traits #{:ethereal}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description "Once per round, if a friendly creature is attacked and destroyed by an enemy creature, place a Wrath token on Valshalla, up to a maximum of 4 tokens. For each Wrath token on her, Valshalla gains **Melee +1**."}
+  {:name "Whirling Spirit"
+   :subtypes #{:wind}
+   :casting-cost 12
+   :school [:air 4]
+   :armor nil
+   :life 13
+   :traits #{[:upkeep 1] :incorporeal :nonliving}
+   :attacks #{{:name "Windstorm"
+               :dice 4
+               :damage-type :wind
+               :effects #{[:push 7 10] [:push :daze 11 12]}
+               :traits #{:ethereal [:extra-dice 2 :incorporeal]}
+               :ranged-melee :melee
+               :speed :quick}}
+   :description "Once per round, if a friendly creature is attacked and destroyed by an enemy creature, place a Wrath token on Valshalla, up to a maximum of 4 tokens. For each Wrath token on her, Valshalla gains **Melee +1**."}}

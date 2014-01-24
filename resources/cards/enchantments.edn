@@ -1,33 +1,34 @@
 ;; common
-{:type :enchantment}
+{:type :enchantment
+ :speed :quick}
 
 #{{:name "Agony"
    :subtypes #{:curse}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
-      :school [:dark 1]
-   :effects #{[:melee :debuff]}
+   :school [:dark 1]
+   :effects #{[:melee -2]}
    :traits #{}
    :description "Whenever this creature makes a **non-spell** ranged or melee attack, it rolls 2 fewer attack dice."}
   {:name "Bear Strength"
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
-   :effects #{[:melee :buff]}
+   :effects #{[:melee 2]}
    :traits #{}
    :description "This creature gains the **Melee +2** trait."}
   {:name "Block"
    :subtypes #{:force :defense}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:mind 1]
@@ -38,7 +39,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
@@ -49,7 +50,7 @@
    :subtypes #{:curse}
    :casting-cost 2
    :reveal-cost 1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:dark 1]
@@ -60,7 +61,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
@@ -71,7 +72,7 @@
    :subtypes #{:lightning, :barrier}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:air 1]
@@ -86,7 +87,7 @@
    :subtypes #{:defense}
    :casting-cost 2
    :reveal-cost 5
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 2]
@@ -99,7 +100,7 @@
    :subtypes #{:curse}
    :casting-cost 2
    :reveal-cost 6
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living :non-mage]}
    :school [:dark 2]
@@ -110,7 +111,7 @@
    :subtypes #{:illusion}
    :casting-cost 2
    :reveal-cost 0
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:zone :object}
    :school [:mind 1]
@@ -121,7 +122,7 @@
    :subtypes #{:protection}
    :casting-cost 2
    :reveal-cost 10
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:holy 3]
@@ -132,7 +133,7 @@
    :subtypes #{:protection :aegis}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:holy 1]
@@ -143,7 +144,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living :non-mage]}
    :school [:nature 1]
@@ -154,7 +155,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living :non-mage]}
    :school [:nature 1]
@@ -165,7 +166,7 @@
    :subtypes #{:mana}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :non-mage]}
    :school [:arcane 2]
@@ -176,7 +177,7 @@
    :subtypes #{:force}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:mind 2]
@@ -187,7 +188,7 @@
    :subtypes #{:force :defense}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:mind 1]
@@ -201,7 +202,7 @@
    :subtypes #{:force :defense}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:mind 1]
@@ -215,7 +216,7 @@
    :subtypes #{:curse :poison}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:dark 1]
@@ -226,7 +227,7 @@
    :subtypes #{:mana}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:object}
    :school [:arcane 1]
@@ -237,7 +238,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
@@ -248,7 +249,7 @@
    :subtypes #{:trap :flame}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :enemy]}
@@ -264,7 +265,7 @@
    :subtypes #{:metamagic}
    :casting-cost 2
    :reveal-cost 1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:arcane 1]
@@ -275,7 +276,7 @@
    :subtypes #{:curse}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:dark 1]
@@ -286,7 +287,7 @@
    :subtypes #{:curse}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:dark 1]
@@ -297,7 +298,7 @@
    :subtypes #{:curse}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:dark 1]
@@ -308,7 +309,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
@@ -319,7 +320,7 @@
    :subtypes #{:metamagic}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:arcane 1]
@@ -330,7 +331,7 @@
    :subtypes #{:psychic}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :non-mage]}
    :school [:holy 1]
@@ -341,7 +342,7 @@
    :subtypes #{:curse :poison}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:dark 1]
@@ -352,7 +353,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
@@ -363,7 +364,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
@@ -374,7 +375,7 @@
    :subtypes #{:force :defense}
    :casting-cost 2
    :reveal-cost 5
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:mind 2]
@@ -385,7 +386,7 @@
    :subtypes #{:metamagic}
    :casting-cost 2
    :reveal-cost 5
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:arcane 2]
@@ -396,7 +397,7 @@
    :subtypes #{}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 2]
@@ -407,7 +408,7 @@
    :subtypes #{:protection :aegis}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :living :friendly]}
@@ -419,7 +420,7 @@
    :subtypes #{:protection :aegis}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :living :friendly]}
@@ -431,7 +432,7 @@
    :subtypes #{:trap :teleport}
    :casting-cost 2
    :reveal-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:zone}
    :secondary-targets #{[:creature :enemy]}
@@ -443,10 +444,10 @@
    :subtypes #{:transform}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal :non-mage]}
-   :school [[:arcane 2] [:stone 1]]
+   :school [[:arcane 2] [:earth 1]]
    :effects #{:incapacitated [:armor 6]}
    :traits #{[:upkeep 4]}
    :description "This creature is **Incapacitated**, and gains **Armor +6**. You cannot reveal Turn to Stone during an action, such as an attack or spell."}
@@ -454,7 +455,7 @@
    :subtypes #{:vampire}
    :casting-cost 2
    :reveal-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:dark 2]
