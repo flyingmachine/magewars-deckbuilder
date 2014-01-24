@@ -26,7 +26,7 @@
    :secondary-targets #{[:creature :living :non-mage]}
    :casting-cost 1
    :school [:holy 1]
-   :slots #{:head}
+   :slots #{:helmet}
    :effects #{[:armor :buff]}
    :traits #{:priestess-only}
    :description "Once per round as a quick spell, this Mage may pay 2 mana to place an **Armor +1** token on a target Living non-Mage creature up to one zone away. These tokens may stack."}
@@ -42,7 +42,7 @@
    :subtypes #{}
    :casting-cost 6
    :school [:war 1]
-   :slots #{:hand}
+   :slots #{:gloves}
    :effects #{:defense}
    :defenses #{{:effectiveness 7
                 :uses 1
@@ -107,7 +107,7 @@
    :subtypes #{}
    :casting-cost 3
    :school [:war 1]
-   :slots #{:hand}
+   :slots #{:gloves}
    :effects #{[:melee 1]}
    :traits #{}
    :description "Mage gains the **Melee +1** trait."}
@@ -115,7 +115,7 @@
    :subtypes #{}
    :casting-cost 8
    :school [:dark 2]
-   :slots #{:head}
+   :slots #{:helmet}
    :effects #{}
    :traits #{}
    :description "Whenever this Mage is targeted by a melee attack (except a Counterstrike), at the beginning of the Declare Attack Step, roll the effect die. On a 9+ the attack is canceled. The attacker may choose to attack a different target instead. This does not affect creatures with the Nonliving or Psychic Immunity traits."}
@@ -154,7 +154,7 @@
    :subtypes #{}
    :casting-cost 2
    :school [:war 1]
-   :slots #{:foot}
+   :slots #{:boots}
    :effects #{[:armor 1]}
    :traits #{:novice}
    :description "Mage gains **Armor +1**"}
@@ -162,7 +162,7 @@
    :subtypes #{}
    :casting-cost 2
    :school [:war 1]
-   :slots #{:hand}
+   :slots #{:gloves}
    :effects #{[:armor 1]}
    :traits #{:novice}
    :description "Mage gains **Armor +1**"}

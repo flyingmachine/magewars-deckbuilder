@@ -177,4 +177,10 @@
  "Temple of the Dawnbreaker" 1
  "Wall of Fire" 2
  "Wall of Stone" 2
+
+ ;; Mages
+ "Beastmaster" 1
+ "Priestess" 1
+ "Warlock" 1
+ "Wizard" 1
 }

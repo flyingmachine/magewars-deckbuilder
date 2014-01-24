@@ -1,0 +1,103 @@
+{:type :creature
+ :subtypes #{:mage}}
+#{{:name "Beastmaster"
+   :subclass "Straywood Forest"
+   :subtypes #{:wood-elf}
+   :armor 0
+   :life 36
+   :channeling 9
+   :spellpoints 120
+   :training {:affinity #{:nature}
+              :anathema #{:fire}}
+   :abilities #{{:name "Quick Summoning"
+                 :description "Once per round, the Beastmaster may summon a Level 1 *animal* creature spell as a quick spell."}
+                {:name "Pet"
+                 :description "When a friendly non-Legedary *animal* creature comes into play, you may make it your **Pet**. Pay mana equal to the creature's **Level +1**, then place the Pet marker on it. Pet gains **Melee +1**, **Armor +1**, and **Life +3**. Whenever Pet is in the same zone as his Beastmaster, it gains an additional **Melee +1**. If Pet is destroyed, you may assign the marker again in the same manner when a new *animal* is summoned."}
+                {:name "Battle Skill"
+                 :description "Beastmaster has the **Melee +1** trait."}}
+   :attacks #{{:name "Basic Melee Attack"
+               :dice 3
+               :damage-type :nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :traits #{[:melee 1]}
+   :description ""}
+  {:name "Priestess"
+   :subclass "Westlock"
+   :subtypes #{:high-elf}
+   :armor 0
+   :life 32
+   :channeling 10
+   :spellpoints 120
+   :training {:affinity #{:holy}
+              :anathema #{:dark}}
+   :abilities #{{:name "Divine Reward"
+                 :description "Once per round, if the Priestess casts and resolves a *Holy* incantation spell, or reveals a *Holy* enchantment spell that she controls, she gains **1 Life**"}
+                {:name "Restore"
+                 :description "As a quick spell, the Priestess can remove one condition marker from a friendly creature up to 1 zone away by paying its removal cost.
+
+As a full action spell, she can remove as many condition markers as she wishes from that creature by payaing their removal costs."}}
+   :attacks #{{:name "Basic Melee Attack"
+               :dice 3
+               :damage-type :nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :traits #{}
+   :description ""}
+  {:name "Warlock"
+   :subclass "Arraxian Crown"
+   :subtypes #{:human}
+   :armor 0
+   :life 38
+   :channeling 9
+   :spellpoints 120
+   :training {:affinity #{:dark :fire}
+              :anathema #{:holy}}
+   :abilities #{{:name "Curseweaving"
+                 :description "Once per round, if a creature is destroyed that has 1 or more *curse* spells you control attached to it, you may return one of those spells to your spellbook, instead of placing it in your discard pile."}
+                {:name "Blood Reaper"
+                 :description "When a friendly non-Legendary *demon* creature comes into play, you may make it your **Bloodreaper**. Warlock **loses Life** equaal to the creature's **Level +1**, then places the Bloodreaper marker on it. Bloodreaper gains the **Bloodthirst +2** trait. The first time each round that it attacks and damages a Living creature, the Warlock may **heal 2 damage**. If it is destroyed, you may assign the marker in the same manner when a new *demon* is summoned."}
+                {:name "Battle Skill"
+                 :description "Beastmaster has the **Melee +1** trait."}}
+   :attacks #{{:name "Basic Melee Attack"
+               :dice 3
+               :damage-type :nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}}
+   :traits #{[:melee 1]}
+   :description ""}
+  {:name "Wizard"
+   :subclass "Sortilege"
+   :subtypes #{:human}
+   :armor 0
+   :life 32
+   :channeling 10
+   :spellpoints 120
+   :training {:affinity #{:arcane :elemental}}
+   :abilities #{{:name "Voltaric Shield"
+                 :description "Each Upkeep Phase, the Wizard may pay 2 mana to activate his **Voltaric Shield** (flip the shield marker to the ON side). The first time the Wizard is attacked and dealt damage this round, if the shield is on, flip the shield marker to the off side, and cancel up to **3** points of damage. If the shield marker is still on at the end of the round, flip it to the offside."}}
+   :attacks #{{:name "Basic Melee Attack"
+               :dice 3
+               :damage-type :nil
+               :effects #{}
+               :traits #{}
+               :ranged-melee :melee
+               :speed :quick}
+              {:name "Arcane Zip"
+               :dice 3
+               :casting-cost 1
+               :damage-type :nil
+               :effects #{}
+               :traits #{:ethereal}
+               :ranged-melee :ranged
+               :range [0 1]
+               :speed :quick
+               :description "Counts as an attack spell. May be cast once per round."}}
+   :traits #{[:melee 1]}
+   :description ""}}
