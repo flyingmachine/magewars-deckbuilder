@@ -1,10 +1,7 @@
-;; common
-{:type :incantation}
-
 #{{:name "Banish"
    :subtypes #{:teleport}
    :casting-cost 14
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :non-mage]}
    :school [:arcane 3]
@@ -14,7 +11,7 @@
   {:name "Battle Fury"
    :subtypes #{:command}
    :casting-cost 5
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
@@ -24,7 +21,7 @@
   {:name "Call of the Wild"
    :subtypes #{}
    :casting-cost 4
-   :action :quick
+   :speed :quick
    :range [0 0]
    :targets #{:arena}
    :secondary-targets #{[:creature :animal]}
@@ -35,7 +32,7 @@
   {:name "Charge"
    :subtypes #{:command}
    :casting-cost 4
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
@@ -45,7 +42,7 @@
   {:name "Dispel"
    :subtypes #{:metamagic}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:enchantment :revealed]}
    :school [:arcane 1]
@@ -55,7 +52,7 @@
   {:name "Dissolve"
    :subtypes #{:acid}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{[:creature :mage]}
    :secondary-targets #{:equipment}
@@ -66,7 +63,7 @@
   {:name "Drain Life"
    :subtypes #{:vampiric}
    :casting-cost 12
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{[:creature :living]}
    :school [:dark 3]
@@ -76,7 +73,7 @@
   {:name "Drain Power"
    :subtypes #{:mana}
    :casting-cost 16
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :mage]}
    :school [:arcane 3]
@@ -86,7 +83,7 @@
   {:name "Evade"
    :subtypes #{:command}
    :casting-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
@@ -96,7 +93,7 @@
   {:name "Explode"
    :subtypes #{:flame}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{[:creature :mage]}
    :secondary-targets #{:equipment}
@@ -107,20 +104,10 @@
                :effects #{[:burn 6 12]}
                :traits #{:unavoidable :defrost}}}
    :description "When you cast Explode, choose an equipment object attached to the target Mage. **X = 6 +** the equipment's casting cost. Destroy the chosen equipment. Then, Expode makes the above *flame* attack against the target Mage."}
-  {:name "Evade"
-   :subtypes #{:command}
-   :casting-cost 3
-   :action :quick
-   :range [0 2]
-   :targets #{[:creature :corporeal]}
-   :school [:war 1]
-   :effects #{:elusive}
-   :traits #{}
-   :description "Target gains the Elusive trait until the end of the round."}
   {:name "Force Push"
    :subtypes #{:force}
    :casting-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:mind 1]
@@ -130,7 +117,7 @@
   {:name "Group Heal"
    :subtypes #{:healing}
    :casting-cost 9
-   :action :slow
+   :speed :slow
    :range [0 1]
    :targets #{:zone}
    :secondary-targets #{[:creature :living :friendly]}
@@ -141,7 +128,7 @@
   {:name "Heal"
    :subtypes #{:healing}
    :casting-cost 9
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:holy 2]
@@ -151,7 +138,7 @@
   {:name "Knockdown"
    :subtypes #{:force}
    :casting-cost 3
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature}
    :school [:mind 1]
@@ -161,7 +148,7 @@
   {:name "Lay Hands"
    :subtypes #{:healing}
    :casting-cost 9
-   :action :quick
+   :speed :quick
    :range [0 0]
    :targets #{[:creature :living :non-mage]}
    :school [:holy 3]
@@ -171,7 +158,7 @@
   {:name "Minor Heal"
    :subtypes #{:healing}
    :casting-cost 5
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{[:creature :living]}
    :school [:holy 1]
@@ -181,7 +168,7 @@
   {:name "Perfect Strike"
    :subtypes #{:command}
    :casting-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
@@ -191,7 +178,7 @@
   {:name "Piercing Strike"
    :subtypes #{:command}
    :casting-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :corporeal]}
    :school [:war 1]
@@ -201,7 +188,7 @@
   {:name "Purge Magic"
    :subtypes #{:metamagic}
    :casting-cost 12
-   :action :quick
+   :speed :quick
    :range [0 1]
    :targets #{:creature :conjuration}
    :secondary-targets #{:enchantment}
@@ -211,7 +198,7 @@
   {:name "Purify"
    :subtypes #{:healing}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :secondary-targets #{[:condition :poison] [:enchantment :poison]}
@@ -221,7 +208,7 @@
   {:name "Resurrection"
    :subtypes #{:healing}
    :casting-cost -1
-   :action :slow
+   :speed :slow
    :range [0 0]
    :targets #{[:creature :destroyed :living]}
    :school [:holy 4]
@@ -230,7 +217,7 @@
   {:name "Rouse the Beast"
    :subtypes #{}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :living]}
    :school [:nature 1]
@@ -239,7 +226,7 @@
   {:name "Seeking Dispel"
    :subtypes #{:metamagic}
    :casting-cost 2
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:enchantment :hidden]}
    :school [:arcane 1]
@@ -248,7 +235,7 @@
   {:name "Shift Enchantment"
    :subtypes #{:metamagic}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:enchantment :creature}
    :school [:arcane 1]
@@ -258,7 +245,7 @@
   {:name "Sleep"
    :subtypes #{:psychic}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{[:creature :non-mage :living]}
    :school [:mind 2]
@@ -274,7 +261,7 @@ Add 2 mana to the cost for each Level beyond 3."}
   {:name "Steal Enchantment"
    :subtypes #{:metamagic}
    :casting-cost -1
-   :action :slow
+   :speed :slow
    :range [0 2]
    :targets #{[:enchantment :revealed] :creature}
    :school [:arcane 3]
@@ -284,7 +271,7 @@ Add 2 mana to the cost for each Level beyond 3."}
   {:name "Teleport"
    :subtypes #{:teleport}
    :casting-cost -1
-   :action :quick
+   :speed :quick
    :range [0 2]
    :targets #{:creature :zone}
    :school [:arcane 2]
@@ -294,7 +281,7 @@ Add 2 mana to the cost for each Level beyond 3."}
   {:name "Vampiric Strike"
    :subtypes #{:vampiric}
    :casting-cost 3
-   :action :quick
+   :speed :quick
    :range [0 3]
    :targets #{[:creature :living]}
    :school [:dark 1]

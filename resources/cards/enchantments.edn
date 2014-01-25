@@ -1,7 +1,4 @@
 ;; common
-{:type :enchantment
- :speed :quick}
-
 #{{:name "Agony"
    :subtypes #{:curse}
    :casting-cost 2
@@ -404,18 +401,6 @@
    :effects #{[:armor 2]}
    :traits #{[:magebind 1]}
    :description "This creature gains **Armor +2**."}
-  {:name "Sacred Ground"
-   :subtypes #{:protection :aegis}
-   :casting-cost 2
-   :reveal-cost 4
-   :speed :quick
-   :range [0 2]
-   :targets #{:zone}
-   :secondary-targets #{[:creature :living :friendly]}
-   :school [:holy 2]
-   :effects #{[:aegis 1]}
-   :traits #{}
-   :description "All friendly Living creatures in this zone gain the **Aegis 1** trait."}
   {:name "Sacred Ground"
    :subtypes #{:protection :aegis}
    :casting-cost 2

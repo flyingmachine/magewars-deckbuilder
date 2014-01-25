@@ -1,9 +1,4 @@
 ;; common
-{:type :equipment
- :targets #{:mage}
- :speed :quick
- :range [0 2]}
-
 #{{:name "Arcane Ring"
    :subtypes #{:mana}
    :secondary-targets #{[:spell :metamagic] [:spell :mana]}

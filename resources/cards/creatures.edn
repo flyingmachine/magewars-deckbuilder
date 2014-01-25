@@ -1,9 +1,4 @@
 ;; common
-{:type :creature
- :targets #{:zone}
- :speed :slow
- :range [0 0]
- :channeling 0}
 #{{:name "Adramelech, Lord of Fire"
    :subtypes #{:demon}
    :casting-cost 24
@@ -472,14 +467,14 @@
    :casting-cost 16
    :school [:nature 4]
    :armor 3
-   :life
+   :life 12
    :effects #{[:armor 1] [:melee 1]}
    :traits #{:legendary}
-   :attacks #{{:name "Fangs"
+   :attacks #{{:name "Bite"
                :dice 5
                :damage-type nil
                :effects #{}
-               :traits #{:vampiric}
+               :traits #{}
                :ranged-melee :melee
                :speed :quick}}
    :description "All other friendly *canine* creatures in the same zone as Redclaw gain **Armor +1** and the **Melee +1** trait."}

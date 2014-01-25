@@ -61,7 +61,7 @@
    :attacks #{{:name "Open the Gate"
                :dice 4
                :damage-type :flame
-               :effects #{[[:burn 1] 5 10} [[:burn 2] 11 12}}
+               :effects #{[[:burn 1] 5 10] [[:burn 2] 11 12]}
                :traits #{:unavoidable :defrost}
                :ranged-melee :melee
                :speed :slow}}
