@@ -611,7 +611,7 @@
                 :uses 1
                 :restrictions #{:no-ranged}}}
    :description ""}
-  {:name "Thunderift  Falcon"
+  {:name "Thunderift Falcon"
    :subtypes #{:animal :bird}
    :casting-cost 6
    :school [:nature 1]

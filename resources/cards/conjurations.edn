@@ -1,9 +1,4 @@
 ;; common
-{:type :equipment
- :targets #{:zone}
- :speed :quick
- :range [0 1]}
-
 #{{:name "Animal Kinship"
    :subtypes #{:totem}
    :secondary-targets #{[:creature :animal] [:creature :mage]}

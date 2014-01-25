@@ -21,6 +21,7 @@
  "Dispel" 5
  "Dissolve" 4
  "Drain Life" 2
+ "Drain Power" 2
  "Evade" 2
  "Explode" 2
  "Force Push" 3
@@ -38,7 +39,7 @@
  "Seeking Dispel" 3
  "Shift Enchantment" 2
  "Sleep" 2
- "Steal Enchaantment" 2
+ "Steal Enchantment" 2
  "Teleport" 3
  "Vampiric Strike" 2
 
@@ -107,6 +108,7 @@
  "Malacoda" 1
  "Mana Leech" 3
  "Moonglow Faerie" 2
+ "Mountain Gorilla" 2
  "Necropian Vampiress" 1
  "Redclaw, Alpha Male" 1
  "Royal Archer" 2
@@ -152,6 +154,7 @@
  "Staff of Beasts" 1
  "Staff of the Arcanum" 1
  "Suppression Cloak" 1
+ "Wind Wyvern Hide" 1
 
  ;; Conjurations
  "Animal Kinship" 1

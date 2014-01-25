@@ -53,17 +53,21 @@
   [set-name]
   (read-edn "sets/" set-name))
 
+(defn merge-count
+  [card sets]
+  (merge card {:count (reduce + (map #(get % (:name card) 0) sets))}))
+
 (defn cards-by-type
-  [card-type common-attributes transformations sets]
+  [card-type sets]
   (->> (read-edn "cards/" card-type)
-       (map (fn [x]
-              (let [card (merge (card-type common-attributes) x)]
-                (if-let [t (card-type transformations)]
-                  ((apply comp t) card)
-                  card))))
+       (map (fn [card]
+              (-> (card-type common-attributes)
+                  (merge card)
+                  ((apply comp (card-type transformations [])))
+                  (merge-count sets))))
        (into #{})))
 
 (def cards
   (->> (keys common)
-       (map #(cards-by-type % common-attributes transformations []))
+       (map #(cards-by-type % [(card-set :core)]))
        (reduce into)))
