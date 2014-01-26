@@ -70,3 +70,45 @@
   (->> (keys common-attributes)
        (map #(cards-by-type % [(card-set :core)]))
        (reduce into)))
+
+
+
+;; Filter testing
+(defn only-non-empty
+  [filters]
+  (filter #(not (empty? (second %))) filters))
+
+(defn explode-nested-val
+  [val]
+  (reduce (fn [final x]
+            (if (keyword? x)
+              (conj final [x])
+              (let [[head & tail] x]
+                (conj (reduce conj final (map (fn [y] [head y]) tail))
+                      [head]))))
+        #{}
+        val))
+
+(defn prep
+  [val]
+  (if (set? val)
+    (explode-nested-val val)
+    #{val}))
+
+(defn map-set-filter
+  [filters card]
+  (every? (fn [[attribute values]]
+            (not-empty
+             (clojure.set/intersection
+              values
+              (prep (attribute card)))))
+          (only-non-empty filters)))
+
+(defn filter-cards
+  [cards filters]
+  (filter (partial map-set-filter filters) cards))
+
+(def attribute-filter
+  {:type #{:incantation}
+   :targets #{[:creature :non-mage]}})
+

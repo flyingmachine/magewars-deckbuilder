@@ -7,4 +7,7 @@
   [tailrecursion/hoplon "4.0.10"]
   [org.clojure/clojurescript "0.0-2138"]]
  :source-paths
- ["src/server" "src/browser"])
+ ["src/server" "src/browser"]
+
+ :resource-paths
+ ["resources/data" "resources"])
