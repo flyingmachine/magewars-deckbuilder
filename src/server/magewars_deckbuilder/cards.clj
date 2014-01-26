@@ -48,7 +48,6 @@
                  (merge (apply dissoc x attack-keys)
                         {:attacks #{(select-keys x (conj attack-keys :range))}})))]})
 
-;;
 (defn card-set
   [set-name]
   (read-edn "sets/" set-name))
@@ -68,6 +67,6 @@
        (into #{})))
 
 (def cards
-  (->> (keys common)
+  (->> (keys common-attributes)
        (map #(cards-by-type % [(card-set :core)]))
        (reduce into)))

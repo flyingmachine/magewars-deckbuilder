@@ -1,5 +1,6 @@
 (page "index.html"
-  (:require [magewars-deckbuilder.deck :as d]))
+  (:require [magewars-deckbuilder.deck :as d]
+            [magewars-deckbuilder.state.deck :as sd]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
@@ -75,6 +76,8 @@
         (div :on-click (move-card card cards dest)
           (text "~{card}"))))))
 
+(sd/get-state)
+
 (html
  (head)
  (body
@@ -84,4 +87,5 @@
      (filterable-card-set d/deck d/attributes d/base-set))
    (div :id "base-set"
      (h3 "Base Set")
-     (filterable-card-set d/base-set d/attributes d/deck))))
+     (filterable-card-set d/base-set d/attributes d/deck))
+   (div (text "~{sd/deck}"))))

@@ -5,7 +5,6 @@
  [[tailrecursion/boot.core "1.2.3"]
   [tailrecursion/boot.task "1.0.2"]
   [tailrecursion/hoplon "4.0.10"]
-  [org.clojure/clojurescript "0.0-2138"]
-  [org.clojure/tools.nrepl "0.2.3"]]
+  [org.clojure/clojurescript "0.0-2138"]]
  :source-paths
  ["src/server" "src/browser"])
