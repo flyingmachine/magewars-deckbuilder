@@ -24,14 +24,17 @@
              all-cards)))))
 
 (defn filter-val
-  [all-cards filtered-cards filters attr val]
-  (li (text "~{val}")))
+  [all-cards cards filters attr val]
+  (li
+   (label
+    (input :type "checkbox"
+           :on-change (toggle-filter! filters attr val))
+    (text "~{val} ~{@(filter-count all-cards cards filters attr val)}"))))
 (defn filter-attribute
-  [all-cards filtered-cards filters attr foptions]
+  [all-cards filtered-cards filters attr vals]
   (div (h3 (text "~{attr}"))
-       (text "~{(count (get foptions attr))}")
-       (text "~{(attr foptions)}")
-       (ul (map #(li (text "~{(str %1)}")) (vec (map (constantly 1) (get foptions attr)))))))
+       (ul (map (partial filter-val all-cards filtered-cards filters attr)
+                vals))))
 
 (defn add-card
   [dest c]
@@ -71,15 +74,16 @@
 
 (get-state)
 
+(defn fc
+  [vals]
+  (div (text "~{vals}")))
+
 (html
  (head)
  (body
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
      (h3 "Filters")
-     (loop-tpl :size (count filter-attributes-ordered)
-               :bindings [attr filter-attributes-ordered]
-       (filter-attribute cards fcards filters @attr foptions))
      
      (h3 "Cards")
      (ul
