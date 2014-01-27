@@ -7,34 +7,75 @@
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
+;; state
+(def filter-attributes-ordered
+  (reduce #(assoc % (second %2) (first %2))
+          {}
+          (map-indexed vector
+                       [:type :subtypes :school :level
+                        :targets :secondary-targets :range
+                        :casting-cost :effects :traits
+                        :speed :armor :life :channeling :defenses
+                        :attack-dice :damage-types :ranged-melee :attack-speed
+                        :slot])))
+(defc filters (empty-filters attribute-filter-types))
+(defc cards #{})
+(defc error nil)
+(def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
+(defc= fcards (sort-by :name (filter-cards cards filters)))
+(defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
+
+;; 
 (defn toggle-filter!
-  [filters attr val]
+  [attr val]
   (fn []
     (let [f (if (get-in @filters [attr val]) disj conj)]
       (swap! filters #(merge-with f % {attr val})))))
 
 (defn filter-count
-  [all-cards filtered-cards filters attr val]
+  [attr val]
   (cell= (count
           (if (get-in filters [attr val])
-            (filter #(= (attr %) val) filtered-cards)
+            (filter #(= (attr %) val) fcards)
             (filter
              #(and (= (attr %) val)
                    ((partial map-set-filter (dissoc filters attr)) %))
-             all-cards)))))
+             cards)))))
 
-(defn filter-val
-  [all-cards cards filters attr val]
+(defn vset?
+  [attr]
+  (= (attr attribute-filter-types) :vset))
+(defn filter-val-display [attr val] (if (vset? attr) (first val) val))
+
+(defn sub-filters
+  [attr val]
+  (if (and (vset? attr) (not-empty (second val)))
+    (let [[root leaves] val]
+      (div (ul (map #(li
+                      (input :type "checkbox"
+                             :on-change (toggle-filter! attr [root %])))
+                    (map str (second val))))))))
+
+
+(defn filter-li
+  [attr val display]
   (li
    (label
     (input :type "checkbox"
-           :on-change (toggle-filter! filters attr val))
-    (text "~{val} ~{@(filter-count all-cards cards filters attr val)}"))))
+           :on-change (toggle-filter! attr val))
+    (text "~{display} ~{@(filter-count cards cards filters attr val)}"))))
+(defn filter-val
+  [attr val]
+  (if (vset? attr)
+    (let [[root leaves] val]
+      ((filter-li attr root root)
+       (if (> (count leaves) 0)
+         (ul (map #(filter-li attr [root %] %) leaves)))))
+    (filter-li attr val val)))
 (defn filter-attribute
-  [all-cards filtered-cards filters attr vals]
+  [attr vals]
   (div (h3 (text "~{attr}"))
-       (ul (map (partial filter-val all-cards filtered-cards filters attr)
-                vals))))
+       (ul (map (partial filter-val attr) vals))))
 
 (defn add-card
   [dest c]
@@ -55,26 +96,6 @@
       (swap! src remove-card c)
       (swap! dest add-card c))))
 
-
-(def filter-attributes-ordered
-  (reduce #(assoc % (second %2) (first %2))
-          {}
-          (map-indexed vector
-                       [:type :subtypes :school :level
-                        :targets :secondary-targets :range
-                        :casting-cost :effects :traits
-                        :speed :armor :life :channeling :defenses
-                        :attack-dice :damage-types :ranged-melee :attack-speed
-                        :slot])))
-
-(defc filters (empty-filters attribute-filter-types))
-(defc cards #{})
-(defc error nil)
-
-(def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
-(defc= fcards (sort-by :name (filter-cards cards filters)))
-(defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
-
 (get-state)
 
 (defn fc
@@ -89,7 +110,7 @@
      (h3 "Filters")
      (loop-tpl :size (count filter-attributes-ordered)
                :bindings [foption foptions]
-       (filter-attribute cards fcards filters (first @foption) (sort (second @foption))))
+       (filter-attribute (first @foption) (sort (second @foption))))
      (h3 "Cards")
      (ul
        (loop-tpl :size 300 :bindings [card fcards]

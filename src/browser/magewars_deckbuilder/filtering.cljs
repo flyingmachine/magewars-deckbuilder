@@ -1,6 +1,8 @@
 (ns magewars-deckbuilder.filtering
   (:require [magewars-deckbuilder.utils :refer [mapval]]))
 
+;; TODO put this in cards, consolidate filter-options to go in cards
+;; and be returned as big state thing
 (def attribute-filter-types
   {:type :keyword
    :subtypes :keyword

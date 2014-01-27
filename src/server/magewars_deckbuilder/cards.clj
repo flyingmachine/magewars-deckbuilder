@@ -91,7 +91,6 @@
     (school-pair school)
     (reduce (partial merge-with into) (map school-pair school))))
 
-;; TODO handle range in searching
 (defn card-views
   [card]
   {:name (:name card)
