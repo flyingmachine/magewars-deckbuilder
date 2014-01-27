@@ -1,7 +1,7 @@
 (page "index.html"
   (:require [magewars-deckbuilder.deck :as d]
-            [magewars-deckbuilder.deck :refer [filter-cards map-set-filter]]
-            [magewars-deckbuilder.state.deck :as sd]))
+            [magewars-deckbuilder.filtering :refer [filter-cards map-set-filter filtered-cards]]
+            [tailrecursion.castra  :as c :refer [mkremote]]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
@@ -52,18 +52,12 @@
       (swap! src remove-card c)
       (swap! dest add-card c))))
 
-(defn filterable-card-set
-  [cards filterable dest]
-  (let [filtersc (cell (empty-filters filterable))
-        cardsc (cell= (sort-by :name (filter-cards cards filtersc)))]
-    (div
-      (div :class "filters"
-        (map (partial filter-attribute cards cardsc filtersc) (sort-by first filterable)))
-      (loop-tpl :size 20 :bindings [card cardsc]
-        (div :on-click (move-card card cards dest)
-          (text "~{card}"))))))
+(defc filters {})
+(defc cards #{})
 
-(sd/get-state)
+(def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
+(def cardsc (filtered-cards cards filters))
+(get-state)
 
 (html
  (head)
@@ -71,8 +65,6 @@
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
      (h3 "Your Deck")
-     (filterable-card-set d/deck d/attributes d/base-set))
-   (div :id "base-set"
-     (h3 "Base Set")
-     (filterable-card-set d/base-set d/attributes d/deck))
-   (div (text "~{sd/deck}"))))
+     (loop-tpl :size 20 :bindings [card cardsc]
+        (div
+          (text "~{card}"))))))

@@ -1,4 +1,4 @@
-(ns magewars-deckbuilder.state.deck
+(ns magewars-deckbuilder.deck
   (:require-macros
    [tailrecursion.javelin :refer [defc defc= cell=]])
   (:require
