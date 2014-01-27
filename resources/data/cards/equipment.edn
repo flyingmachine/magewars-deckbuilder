@@ -207,7 +207,7 @@
    :school [:arcane 1]
    :slots #{:amulet}
    :effects #{[:channeling 1]}
-   :traits #{:warlock-only}
+   :traits #{}
    :description "Mage gains the **Channel +1** trait."}
   {:name "Regrowth Belt"
    :subtypes #{}

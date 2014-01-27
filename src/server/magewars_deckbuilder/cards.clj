@@ -1,6 +1,7 @@
 (ns magewars-deckbuilder.cards
   (:require [clojure.java.io :as io]))
 
+;; reading static card sets
 (defn slurp-resource
   [path]
   (-> path
@@ -37,7 +38,7 @@
    :enchantments {:type :enchantment
                   :speed :quick}
    :equipment    {:type :equipment
-                  :targets #{:mage}
+                  :targets #{[:creature :mage]}
                   :speed :quick
                   :range [0 2]}
    :incantations {:type :incantation}})
@@ -48,13 +49,72 @@
                  (merge (apply dissoc x attack-keys)
                         {:attacks #{(select-keys x (conj attack-keys :range))}})))]})
 
-(defn card-set
-  [set-name]
-  (read-edn "sets/" set-name))
-
+(defn count-in-sets
+  [card sets]
+  (reduce + (map #(get % (:name card) 0) sets)))
 (defn merge-count
   [card sets]
-  (merge card {:count (reduce + (map #(get % (:name card) 0) sets))}))
+  (merge card {:count (count-in-sets card sets)}))
+
+;; create a search view
+(defn vset
+  [val]
+  (reduce (fn [final x]
+            (if (keyword? x)
+              (conj final [x])
+              (let [[head & tail] x]
+                (conj (reduce conj final (map (fn [y] [head y]) tail))
+                      [head]))))
+        #{}
+        val))
+
+(defn with-attacks
+  [card indexer attr]
+  (reduce into
+          (indexer (attr card))
+          (map (comp indexer attr) (:attacks card))))
+
+(defn attack-set
+  [card attr]
+  (set (map :attr (:attacks card))))
+
+(defn school-pair
+  [pair]
+  {:school #{(first pair)}
+   :level #{(second pair)}})
+
+(defn school-level
+  [{school :school}]
+  (if (keyword? (first school))
+    (school-pair school)
+    (reduce (partial merge-with into) (map school-pair school))))
+
+(defn ->set
+  [x]
+  (if (set? x)
+    x
+    #{x}))
+
+(defn card-views
+  [card]
+  {:name (:name card)
+   :display card
+   :search (merge
+            (reduce into
+                    (map (fn [[k v]] {k (->set v)})
+                         (select-keys
+                          card
+                          [:type :subtypes :speed :armor :defenses :life :channeling])))
+            {:type #{(:type card)}
+             :traits (with-attacks card vset :traits)
+             :attack-dice (attack-set card :dice)
+             :damage-types (attack-set card :damage-type)
+             :effects (with-attacks card vset :effects)
+             :ranged-melee (attack-set card :ranged-melee)
+             :attack-speed (attack-set card :speed)
+             :targets (with-attacks card vset :targets)
+             :slot (vset (:slot card))}
+            (school-level card))})
 
 (defn cards-by-type
   [card-type sets]
@@ -63,8 +123,14 @@
               (-> (card-type common-attributes)
                   (merge card)
                   ((apply comp (card-type transformations [])))
+                  (card-views)
                   (merge-count sets))))
        (into #{})))
+
+
+(defn card-set
+  [set-name]
+  (read-edn "sets/" set-name))
 
 (def cards
   (->> (keys common-attributes)
@@ -78,17 +144,6 @@
   [filters]
   (filter #(not (empty? (second %))) filters))
 
-(defn explode-nested-val
-  [val]
-  (reduce (fn [final x]
-            (if (keyword? x)
-              (conj final [x])
-              (let [[head & tail] x]
-                (conj (reduce conj final (map (fn [y] [head y]) tail))
-                      [head]))))
-        #{}
-        val))
-
 (defn prep
   [val]
   (if (set? val)
@@ -101,7 +156,7 @@
             (not-empty
              (clojure.set/intersection
               values
-              (prep (attribute card)))))
+              (get-in card [:search attribute]))))
           (only-non-empty filters)))
 
 (defn filter-cards
@@ -109,6 +164,5 @@
   (filter (partial map-set-filter filters) cards))
 
 (def attribute-filter
-  {:type #{:incantation}
-   :targets #{[:creature :non-mage]}})
-
+  {:type #{:enchantment :equipment}
+   :targets #{[:creature :mage]}})
