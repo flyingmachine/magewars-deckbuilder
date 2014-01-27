@@ -1,28 +1,15 @@
 (page "index.html"
   (:require [magewars-deckbuilder.deck :as d]
+            [magewars-deckbuilder.deck :refer [filter-cards map-set-filter]]
             [magewars-deckbuilder.state.deck :as sd]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
-(defn empty-filters
-  [attrs]
-  (into {} (map (fn [[a]] [a #{}]) attrs)))
 (defn toggle-filter!
   [filters attr val]
   (fn []
     (let [f (if (get-in @filters [attr val]) disj conj)]
       (swap! filters #(merge-with f % {attr val})))))
-
-(defn only-non-empty
-  [filters]
-  (filter #(not (empty? (second %))) filters))
-(defn map-set-filter
-  [filters x]
-  (every? #((second %) ((first %) x)) (only-non-empty filters)))
-
-(defn filter-cards
-  [cards filters]
-  (filter (partial map-set-filter filters) cards))
 
 (defn filter-count
   [all-cards cards filters attr val]

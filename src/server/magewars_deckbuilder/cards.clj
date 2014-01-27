@@ -68,6 +68,8 @@
         #{}
         val))
 
+(defn ->set [x] (if (set? x) x #{x}))
+
 (defn with-attacks
   [card indexer attr]
   (reduce into
@@ -76,7 +78,7 @@
 
 (defn attack-set
   [card attr]
-  (set (map :attr (:attacks card))))
+  (set (map attr (:attacks card))))
 
 (defn school-pair
   [pair]
@@ -89,12 +91,6 @@
     (school-pair school)
     (reduce (partial merge-with into) (map school-pair school))))
 
-(defn ->set
-  [x]
-  (if (set? x)
-    x
-    #{x}))
-
 (defn card-views
   [card]
   {:name (:name card)
@@ -102,17 +98,17 @@
    :search (merge
             (reduce into
                     (map (fn [[k v]] {k (->set v)})
-                         (select-keys
-                          card
-                          [:type :subtypes :speed :armor :defenses :life :channeling])))
-            {:type #{(:type card)}
-             :traits (with-attacks card vset :traits)
+                         (select-keys card
+                                      [:type :subtypes :speed :armor
+                                       :defenses :life :channeling])))
+            {:traits (with-attacks card vset :traits)
              :attack-dice (attack-set card :dice)
              :damage-types (attack-set card :damage-type)
              :effects (with-attacks card vset :effects)
              :ranged-melee (attack-set card :ranged-melee)
              :attack-speed (attack-set card :speed)
              :targets (with-attacks card vset :targets)
+             :secondary-targets (with-attacks card vset :secondary-targets)
              :slot (vset (:slot card))}
             (school-level card))})
 
@@ -140,28 +136,6 @@
 
 
 ;; Filter testing
-(defn only-non-empty
-  [filters]
-  (filter #(not (empty? (second %))) filters))
-
-(defn prep
-  [val]
-  (if (set? val)
-    (explode-nested-val val)
-    #{val}))
-
-(defn map-set-filter
-  [filters card]
-  (every? (fn [[attribute values]]
-            (not-empty
-             (clojure.set/intersection
-              values
-              (get-in card [:search attribute]))))
-          (only-non-empty filters)))
-
-(defn filter-cards
-  [cards filters]
-  (filter (partial map-set-filter filters) cards))
 
 (def attribute-filter
   {:type #{:enchantment :equipment}
