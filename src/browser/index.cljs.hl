@@ -54,9 +54,11 @@
 
 (defc filters {})
 (defc cards #{})
+(defc error nil)
 
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
 (def cardsc (filtered-cards cards filters))
+
 (get-state)
 
 (html
