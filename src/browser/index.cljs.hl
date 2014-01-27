@@ -57,12 +57,15 @@
 
 
 (def filter-attributes-ordered
-  [:type :subtypes :school :level
-   :targets :secondary-targets :range
-   :casting-cost :effects :traits
-   :speed :armor :life :channeling :defenses
-   :attack-dice :damage-types :ranged-melee :attack-speed
-   :slot])
+  (reduce #(assoc % (second %2) (first %2))
+          {}
+          (map-indexed vector
+                       [:type :subtypes :school :level
+                        :targets :secondary-targets :range
+                        :casting-cost :effects :traits
+                        :speed :armor :life :channeling :defenses
+                        :attack-dice :damage-types :ranged-melee :attack-speed
+                        :slot])))
 
 (defc filters (empty-filters attribute-filter-types))
 (defc cards #{})
@@ -70,7 +73,7 @@
 
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
 (defc= fcards (sort-by :name (filter-cards cards filters)))
-(defc= foptions (filter-options cards))
+(defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
 
 (get-state)
 
@@ -84,7 +87,9 @@
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
      (h3 "Filters")
-     
+     (loop-tpl :size (count filter-attributes-ordered)
+               :bindings [foption foptions]
+       (filter-attribute cards fcards filters (first @foption) (sort (second @foption))))
      (h3 "Cards")
      (ul
        (loop-tpl :size 300 :bindings [card fcards]

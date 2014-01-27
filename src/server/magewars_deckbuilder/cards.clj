@@ -111,7 +111,7 @@
              :targets (with-attacks card vset :targets)
              :secondary-targets (with-attacks card vset :secondary-targets)
              :range (with-attacks card set :range)
-             :slot (vset (:slot card))}
+             :slots (vset (:slots card))}
             (school-level card))})
 
 (defn cards-by-type

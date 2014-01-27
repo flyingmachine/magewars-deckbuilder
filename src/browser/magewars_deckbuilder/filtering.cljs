@@ -18,7 +18,7 @@
    :attack-speed :keyword
    :targets :vset
    :secondary-targets :vset
-   :slot :vset
+   :slots :vset
    :school :keyword
    :level :number})
 
