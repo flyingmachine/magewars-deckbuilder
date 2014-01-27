@@ -4,6 +4,7 @@
 (def attribute-filter-types
   {:type :keyword
    :subtypes :keyword
+   :casting-cost :number
    :speed :keyword
    :armor :number
    :defenses :boolean
@@ -21,13 +22,12 @@
    :school :keyword
    :level :number})
 
-;; TODO some better general way to map over map value
 (def filter-type-attributes
   (mapval #(set (map first %)) (group-by second attribute-filter-types)))
 
 (defn empty-filters
   [attrs]
-  (into {} (map (fn [[a]] [a #{}]) attrs)))
+  (mapval (constantly #{}) attrs))
 
 (defn only-non-empty
   [filters]

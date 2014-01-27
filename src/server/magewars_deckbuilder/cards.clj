@@ -91,6 +91,7 @@
     (school-pair school)
     (reduce (partial merge-with into) (map school-pair school))))
 
+;; TODO handle range in searching
 (defn card-views
   [card]
   {:name (:name card)
@@ -99,7 +100,7 @@
             (reduce into
                     (map (fn [[k v]] {k (->set v)})
                          (select-keys card
-                                      [:type :subtypes :speed :armor
+                                      [:type :subtypes :speed :armor :casting-cost
                                        :defenses :life :channeling])))
             {:traits (with-attacks card vset :traits)
              :attack-dice (attack-set card :dice)
@@ -109,6 +110,7 @@
              :attack-speed (attack-set card :speed)
              :targets (with-attacks card vset :targets)
              :secondary-targets (with-attacks card vset :secondary-targets)
+             :range (with-attacks card set :range)
              :slot (vset (:slot card))}
             (school-level card))})
 

@@ -1,7 +1,9 @@
 (page "index.html"
   (:require [magewars-deckbuilder.deck :as d]
-            [magewars-deckbuilder.filtering :refer [filter-cards map-set-filter filtered-cards filter-options]]
-            [tailrecursion.castra  :as c :refer [mkremote]]))
+            [magewars-deckbuilder.filtering
+             :as f :refer [filter-cards map-set-filter filter-options attribute-filter-types empty-filters]]
+            [tailrecursion.castra
+             :as c :refer [mkremote]]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 
@@ -12,26 +14,24 @@
       (swap! filters #(merge-with f % {attr val})))))
 
 (defn filter-count
-  [all-cards cards filters attr val]
+  [all-cards filtered-cards filters attr val]
   (cell= (count
           (if (get-in filters [attr val])
-            (filter #(= (attr %) val) cards)
+            (filter #(= (attr %) val) filtered-cards)
             (filter
              #(and (= (attr %) val)
                    ((partial map-set-filter (dissoc filters attr)) %))
              all-cards)))))
 
 (defn filter-val
-  [all-cards cards filters attr val]
-  (li
-   (label
-    (input :type "checkbox"
-           :on-change (toggle-filter! filters attr val))
-    (text "~{val} ~{@(filter-count all-cards cards filters attr val)}"))))
+  [all-cards filtered-cards filters attr val]
+  (li (text "~{val}")))
 (defn filter-attribute
-  [all-cards cards filters [attr vals]]
+  [all-cards filtered-cards filters attr foptions]
   (div (h3 (text "~{attr}"))
-       (ul (map (partial filter-val all-cards cards filters attr) vals))))
+       (text "~{(count (get foptions attr))}")
+       (text "~{(attr foptions)}")
+       (ul (map #(li (text "~{(str %1)}")) (vec (map (constantly 1) (get foptions attr)))))))
 
 (defn add-card
   [dest c]
@@ -52,7 +52,16 @@
       (swap! src remove-card c)
       (swap! dest add-card c))))
 
-(defc filters {})
+
+(def filter-attributes-ordered
+  [:type :subtypes :school :level
+   :targets :secondary-targets :range
+   :casting-cost :effects :traits
+   :speed :armor :life :channeling :defenses
+   :attack-dice :damage-types :ranged-melee :attack-speed
+   :slot])
+
+(defc filters (empty-filters attribute-filter-types))
 (defc cards #{})
 (defc error nil)
 
@@ -67,8 +76,12 @@
  (body
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
-     (h3 "Your Deck")
-     (text "options: ~{foptions}")
-     (loop-tpl :size 20 :bindings [card fcards]
-        (div
-          (text "~{card}"))))))
+     (h3 "Filters")
+     (loop-tpl :size (count filter-attributes-ordered)
+               :bindings [attr filter-attributes-ordered]
+       (filter-attribute cards fcards filters @attr foptions))
+     
+     (h3 "Cards")
+     (ul
+       (loop-tpl :size 300 :bindings [card fcards]
+         (li (text "~{(:name card)}")))))))
