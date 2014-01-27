@@ -132,11 +132,3 @@
   (->> (keys common-attributes)
        (map #(cards-by-type % [(card-set :core)]))
        (reduce into)))
-
-
-
-;; Filter testing
-
-(def attribute-filter
-  {:type #{:enchantment :equipment}
-   :targets #{[:creature :mage]}})

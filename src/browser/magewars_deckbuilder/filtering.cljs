@@ -1,8 +1,5 @@
 (ns magewars-deckbuilder.filtering
-  (:require-macros
-   [tailrecursion.javelin :refer [defc defc= cell=]])
-  (:require [magewars-deckbuilder.utils :refer [mapval]]
-            [tailrecursion.javelin :as j :refer [cell]]))
+  (:require [magewars-deckbuilder.utils :refer [mapval]]))
 
 (def attribute-filter-types
   {:type :keyword
@@ -69,7 +66,14 @@
   [cards filters]
   (filter (partial filter-card (prep-filters filters)) cards))
 
-(defn filtered-cards
-  "filters should be a chell"
-  [cards filters]
-  (cell= (sort-by :name (filter-cards cards filters))))
+(defn filter-options
+  [cards]
+  (let [opts (reduce (partial merge-with into)
+                     (map :search cards))]
+    (merge opts
+           (mapval
+            (fn [v]
+              (mapval
+               (fn [w] (set (flatten (map rest w))))
+               (group-by first v)))
+            (select-keys opts (:vset filter-type-attributes))))))

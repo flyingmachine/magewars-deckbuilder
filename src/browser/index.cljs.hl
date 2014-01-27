@@ -1,6 +1,6 @@
 (page "index.html"
   (:require [magewars-deckbuilder.deck :as d]
-            [magewars-deckbuilder.filtering :refer [filter-cards map-set-filter filtered-cards]]
+            [magewars-deckbuilder.filtering :refer [filter-cards map-set-filter filtered-cards filter-options]]
             [tailrecursion.castra  :as c :refer [mkremote]]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
@@ -57,7 +57,8 @@
 (defc error nil)
 
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
-(def cardsc (filtered-cards cards filters))
+(defc= fcards (sort-by :name (filter-cards cards filters)))
+(defc= foptions (filter-options cards))
 
 (get-state)
 
@@ -67,6 +68,7 @@
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
      (h3 "Your Deck")
-     (loop-tpl :size 20 :bindings [card cardsc]
+     (text "options: ~{foptions}")
+     (loop-tpl :size 20 :bindings [card fcards]
         (div
           (text "~{card}"))))))
