@@ -97,14 +97,9 @@
   [cards filters index]
   (apply s/intersection
          cards
-         (map #(get index %)
-              (reduce (fn [pairs [attr fvals]]
-                        (into pairs
-                              (reduce (fn [x fv] (conj x [attr fv]))
-                                      []
-                                      fvals)))
-                      []
-                      (only-non-empty filters)))))
+         (map (fn [[attr fvals]]
+                (apply s/union (map #(get index [attr %]) fvals)))
+              (only-non-empty filters))))
 
 (defn card-index
   [cards filters]
