@@ -1,7 +1,8 @@
 (page "index.html"
   (:require [magewars-deckbuilder.deck :as d]
             [magewars-deckbuilder.filtering
-             :as f :refer [filter-cards map-set-filter filter-options attribute-filter-types empty-filters]]
+             :as f :refer [filter-match filter-cards filter-options
+                           attribute-filter-types empty-filters]]
             [tailrecursion.castra
              :as c :refer [mkremote]]))
 
@@ -32,15 +33,19 @@
     (let [f (if (get-in @filters [attr val]) disj conj)]
       (swap! filters #(merge-with f % {attr val})))))
 
+(defn filter-applied?
+  [attr val]
+  (if-let [fvals (attr filters)]
+    (fvals val)))
+
 (defn filter-count
   [attr val]
-  (cell= (count
-          (if (get-in filters [attr val])
-            (filter #(= (attr %) val) fcards)
-            (filter
-             #(and (= (attr %) val)
-                   ((partial map-set-filter (dissoc filters attr)) %))
-             cards)))))
+  (let [c @fcards
+        f @filters]
+    (cell= (count
+            (if (filter-applied? attr val)
+              (filter #(filter-match attr val %) c)
+              (filter #(filter-match attr val %) c))))))
 
 (defn vset?
   [attr]
@@ -63,7 +68,7 @@
    (label
     (input :type "checkbox"
            :on-change (toggle-filter! attr val))
-    (text "~{display} ~{@(filter-count cards cards filters attr val)}"))))
+    (text "~{display} ~{@(filter-count attr val)}"))))
 (defn filter-val
   [attr val]
   (if (vset? attr)

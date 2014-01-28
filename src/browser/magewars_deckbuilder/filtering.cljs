@@ -55,13 +55,16 @@
           (fn [v] (leaves v))
           (select-keys filters (:vset filter-type-attributes)))))
 
+(defn filter-match
+  [attr valset search]
+  (->> (attr search)
+       (clojure.set/intersection valset)
+       (not-empty)))
+
 (defn filter-card
   [filters card]
   (every? (fn [[attribute values]]
-            (not-empty
-             (clojure.set/intersection
-              values
-              (get-in card [:search attribute]))))
+            (filter-match attribute values (:search card)))
           (only-non-empty filters)))
 
 (defn filter-cards
