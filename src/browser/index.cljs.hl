@@ -1,5 +1,6 @@
 (page "index.html"
-  (:require [magewars-deckbuilder.deck :as d]
+  (:require [clojure.set :as s]
+            [magewars-deckbuilder.deck :as d]
             [magewars-deckbuilder.filtering
              :as f :refer [filter-match filter-cards filter-options
                            filter-card card-index filter-vals
@@ -25,6 +26,7 @@
 (defc error nil)
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
 (defc= fcards (sort-by :name (filter-cards cards filters)))
+(defc= scards (set (filter-cards cards filters)))
 (defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
 (defc= cindex (card-index cards (filter-vals cards)))
 
@@ -36,19 +38,17 @@
       (swap! filters #(merge-with f % {attr val})))))
 
 (defn filter-applied?
-  [attr val]
+  [filters attr val]
   (if-let [fvals (attr filters)]
     (fvals val)))
 
 (defn filter-count
   [attr val]
-  (let [c @fcards
-        f @filters]
-    (cell= (count
-            (if (filter-applied? attr val)
-              (filter #((attr (:search %)) val) c)
-              (filter #(and ((attr (:search %)) val)
-                            (filter-card (merge filters {attr #{val}}) %)) c))))))
+  (cell= (count
+          (if (or (empty? (attr filters)) (filter-applied? filters attr val))
+            (s/intersection scards (get cindex [attr val]))
+            (s/intersection (set (filter-cards cards (dissoc filters attr)))
+                            (get cindex [attr val]))))))
 
 (defn vset?
   [attr]
@@ -65,10 +65,11 @@
   [attr val]
   (if (vset? attr)
     (let [[root leaves] val]
-      ((filter-li attr root root)
+      ((filter-li attr [root] root)
        (if (> (count leaves) 0)
          (ul (map #(filter-li attr [root %] %) leaves)))))
     (filter-li attr val val)))
+
 (defn filter-attribute
   [attr vals]
   (div (h3 (text "~{attr}"))
