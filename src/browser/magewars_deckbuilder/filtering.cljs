@@ -93,6 +93,19 @@
                (group-by first v)))
             (select-keys fvals (:vset filter-type-attributes))))))
 
+(defn fc2
+  [cards filters index]
+  (apply s/intersection
+         cards
+         (map #(get index %)
+              (reduce (fn [pairs [attr fvals]]
+                        (into pairs
+                              (reduce (fn [x fv] (conj x [attr fv]))
+                                      []
+                                      fvals)))
+                      []
+                      (only-non-empty filters)))))
+
 (defn card-index
   [cards filters]
   (reduce
