@@ -2,6 +2,7 @@
   (:require [magewars-deckbuilder.deck :as d]
             [magewars-deckbuilder.filtering
              :as f :refer [filter-match filter-cards filter-options
+                           filter-card card-index filter-vals
                            attribute-filter-types empty-filters]]
             [tailrecursion.castra
              :as c :refer [mkremote]]))
@@ -25,6 +26,7 @@
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
 (defc= fcards (sort-by :name (filter-cards cards filters)))
 (defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
+(defc= cindex (card-index cards (filter-vals cards)))
 
 ;; 
 (defn toggle-filter!
@@ -40,12 +42,13 @@
 
 (defn filter-count
   [attr val]
-  (let [c (map :search @fcards)
+  (let [c @fcards
         f @filters]
     (cell= (count
             (if (filter-applied? attr val)
-              (filter #((attr %) val) c)
-              (filter #((attr %) val) c))))))
+              (filter #((attr (:search %)) val) c)
+              (filter #(and ((attr (:search %)) val)
+                            (filter-card (merge filters {attr #{val}}) %)) c))))))
 
 (defn vset?
   [attr]
@@ -101,6 +104,7 @@
  (body
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
+     (text "~{(count cindex)}")
      (h3 "Filters")
      (loop-tpl :size (count filter-attributes-ordered)
                :bindings [foption foptions]

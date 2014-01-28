@@ -1,5 +1,6 @@
 (ns magewars-deckbuilder.filtering
-  (:require [magewars-deckbuilder.utils :refer [mapval]]))
+  (:require [magewars-deckbuilder.utils :refer [mapval]]
+            [clojure.set :as s]))
 
 (set! cljs.core/*print-fn* #(.log js/console %))
 ;; TODO put this in cards, consolidate filter-options to go in cards
@@ -50,6 +51,8 @@
            (reverse (sort-by :count s)))))
 
 (defn prep-filters
+  "For vset filters, only keep leaves. Otherwise set intersection
+  returns more results than it should."
   [filters]
   (merge filters
          (mapval
@@ -57,9 +60,10 @@
           (select-keys filters (:vset filter-type-attributes)))))
 
 (defn filter-match
-  [attr valset search]
-  (->> (attr search)
-       (clojure.set/intersection valset)
+  "Does a card's attribute intersect with the given filter val set?"
+  [attr fvals card]
+  (->> (attr card)
+       (s/intersection fvals)
        (not-empty)))
 
 (defn filter-card
@@ -72,14 +76,37 @@
   [cards filters]
   (filter (partial filter-card (prep-filters filters)) cards))
 
+(defn filter-vals
+  [cards]
+  (->> (map :search cards)
+       (reduce (partial merge-with into))
+       (mapval #(set (filter identity %)))))
+
 (defn filter-options
   [cards]
-  (let [opts (reduce (partial merge-with into)
-                     (map :search cards))]
-    (merge opts
+  (let [fvals (filter-vals cards)]
+    (merge fvals
            (mapval
             (fn [v]
               (mapval
-               (fn [w] (set (flatten (map rest w))))
+               (fn [w] (set (filter identity (flatten (map rest w)))))
                (group-by first v)))
-            (select-keys opts (:vset filter-type-attributes))))))
+            (select-keys fvals (:vset filter-type-attributes))))))
+
+(defn card-index
+  [cards filters]
+  (reduce
+   (fn [ci [attr fvals]]
+     (reduce
+      (fn [g fval]
+        (assoc g [attr fval] (set (filter-cards cards {attr #{fval}}))))
+      ci
+      fvals))
+   {}
+   filters))
+
+;; filters: {:attr set :attr2 set}
+;; filter: (attr fvals)
+;; attr: :type
+;; fvals: set
+;; target: cardvals
