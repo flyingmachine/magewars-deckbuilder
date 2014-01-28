@@ -18,7 +18,7 @@
                         :casting-cost :effects :traits
                         :speed :armor :life :channeling :defenses
                         :attack-dice :damage-types :ranged-melee :attack-speed
-                        :slot])))
+                        :slots])))
 (defc filters (empty-filters attribute-filter-types))
 (defc cards #{})
 (defc error nil)
@@ -40,27 +40,16 @@
 
 (defn filter-count
   [attr val]
-  (let [c @fcards
+  (let [c (map :search @fcards)
         f @filters]
     (cell= (count
             (if (filter-applied? attr val)
-              (filter #(filter-match attr val %) c)
-              (filter #(filter-match attr val %) c))))))
+              (filter #((attr %) val) c)
+              (filter #((attr %) val) c))))))
 
 (defn vset?
   [attr]
   (= (attr attribute-filter-types) :vset))
-(defn filter-val-display [attr val] (if (vset? attr) (first val) val))
-
-(defn sub-filters
-  [attr val]
-  (if (and (vset? attr) (not-empty (second val)))
-    (let [[root leaves] val]
-      (div (ul (map #(li
-                      (input :type "checkbox"
-                             :on-change (toggle-filter! attr [root %])))
-                    (map str (second val))))))))
-
 
 (defn filter-li
   [attr val display]

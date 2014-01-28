@@ -1,6 +1,7 @@
 (ns magewars-deckbuilder.filtering
   (:require [magewars-deckbuilder.utils :refer [mapval]]))
 
+(set! cljs.core/*print-fn* #(.log js/console %))
 ;; TODO put this in cards, consolidate filter-options to go in cards
 ;; and be returned as big state thing
 (def attribute-filter-types

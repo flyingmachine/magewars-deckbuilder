@@ -97,10 +97,9 @@
    :display card
    :search (merge
             (reduce into
-                    (map (fn [[k v]] {k (->set v)})
-                         (select-keys card
-                                      [:type :subtypes :speed :armor :casting-cost
-                                       :defenses :life :channeling])))
+                    (map (fn [k] {k (->set (k card))})
+                         [:type :subtypes :speed :armor :casting-cost
+                          :defenses :life :channeling]))
             {:traits (with-attacks card vset :traits)
              :attack-dice (attack-set card :dice)
              :damage-types (attack-set card :damage-type)
