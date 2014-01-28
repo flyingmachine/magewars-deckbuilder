@@ -97,10 +97,6 @@
 
 (get-state)
 
-(defn fc
-  [vals]
-  (div (text "~{vals}")))
-
 (html
  (head)
  (body
