@@ -29,7 +29,16 @@
 (defc= fcards (sort-by :name filtered-cards))
 (defc= scards (set filtered-cards))
 (defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
-(defc= cindex (card-index cards (filter-vals cards)))
+(defc= fvals (filter-vals cards))
+(defc= cindex (card-index cards fvals))
+(defc= counts
+  (reduce merge
+          (map (fn [[attr fvals]]
+                 (let [cf (if (empty? (attr filters))
+                            #(s/intersection scards (get cindex [attr %]))
+                            #(fc2 cards (merge filters {attr #{%}}) cindex))]
+                   {attr (reduce merge (map (fn [v] {v (count (cf v))}) fvals))}))
+               fvals)))
 
 ;; 
 (defn toggle-filter!
@@ -39,11 +48,8 @@
       (swap! filters #(merge-with f % {attr val})))))
 
 (defn filter-count
-  [scards attr val]
-  (cell= (count
-          (if (empty? (attr filters))
-            (s/intersection scards (get cindex [attr val]))
-            (fc2 cards (merge filters {attr #{val}}) cindex)))))
+  [counts attr val]
+  (cell= (get-in counts [attr val])))
 
 (defn vset?
   [attr]
@@ -55,7 +61,7 @@
    (label
     (input :type "checkbox"
            :on-change (toggle-filter! attr val))
-    (text "~{display} ~{@(filter-count scards attr val)}"))))
+    (text "~{display} ~{@(filter-count counts attr val)}"))))
 (defn filter-val
   [attr val]
   (if (vset? attr)
