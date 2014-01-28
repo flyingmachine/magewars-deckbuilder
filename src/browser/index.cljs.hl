@@ -25,8 +25,9 @@
 (defc cards #{})
 (defc error nil)
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
-(defc= fcards (sort-by :name (filter-cards cards filters)))
-(defc= scards (set (filter-cards cards filters)))
+(defc= filtered-cards (filter-cards cards filters))
+(defc= fcards (sort-by :name filtered-cards))
+(defc= scards (set filtered-cards))
 (defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
 (defc= cindex (card-index cards (filter-vals cards)))
 
@@ -43,7 +44,7 @@
     (fvals val)))
 
 (defn filter-count
-  [attr val]
+  [scards attr val]
   (cell= (count
           (if (or (empty? (attr filters)) (filter-applied? filters attr val))
             (s/intersection scards (get cindex [attr val]))
@@ -60,7 +61,7 @@
    (label
     (input :type "checkbox"
            :on-change (toggle-filter! attr val))
-    (text "~{display} ~{@(filter-count attr val)}"))))
+    (text "~{display} ~{@(filter-count scards attr val)}"))))
 (defn filter-val
   [attr val]
   (if (vset? attr)
