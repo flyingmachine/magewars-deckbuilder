@@ -102,7 +102,6 @@
  (body
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"
-     (text "~{(count cindex)}")
      (h3 "Filters")
      (loop-tpl :size (count filter-attributes-ordered)
                :bindings [foption foptions]
