@@ -1,0 +1,25 @@
+// Imports -----------------------------------------------------------
+@import "compass/reset";
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/border-radius";
+@import "compass/typography/vertical_rhythm"; // http://compass-style.org/reference/compass/typography/vertical_rhythm/
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/text-shadow";
+@import "compass/css3/transform";
+@import "compass/css3/";
+
+@import "susy"; // grid
+
+// Grid variables
+$column-width   : 4em;            // each column is 4em wide
+$gutter-width   : 1em;            // 1em gutters between columns
+$grid-padding   : $gutter-width;  // grid-padding equal to gutters
+$base-line-height: 24px;
+$total-columns  : 12;
+
+@import "base";
+@import "formalize";
+
+// To customize vertical ryhthm, see http://compass-style.org/reference/compass/typography/vertical_rhythm/
+@include establish-baseline;

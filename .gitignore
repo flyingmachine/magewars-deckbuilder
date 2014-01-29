@@ -3,3 +3,4 @@
 resources/public
 target
 .nrepl-port
+.sass-cache
