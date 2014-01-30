@@ -1,0 +1,14 @@
+.container {
+  // page acts as a container for our grid.
+  @include container;
+  @include trailer;
+  @include leader;
+}
+
+.filters {
+  @include span-columns(6, 12);
+}
+
+.cards {
+  @include span-columns(6 omega, 12);
+}

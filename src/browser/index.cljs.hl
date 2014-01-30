@@ -101,13 +101,16 @@
  (head
   (link :rel "stylesheet" :href "stylesheets/main.css"))
  (body
+  (div :class "container"
    (h1 "Mage Wars Deck Builder")
-   (div :id "deck"
-     (h3 "Filters")
-     (loop-tpl :size (count filter-attributes-ordered)
-               :bindings [foption foptions]
-       (filter-attribute (first @foption) (sort (second @foption))))
-     (h3 "Cards")
-     (ul
-       (loop-tpl :size 300 :bindings [card fcards]
-         (li (text "~{(:name card)}")))))))
+   (div :class "filters"
+    (h3 "Filters")
+    (loop-tpl
+     :size (count filter-attributes-ordered)
+     :bindings [foption foptions]
+     (filter-attribute (first @foption) (sort (second @foption)))))
+   (div :class "cards"
+    (h3 "Cards")
+    (ul
+     (loop-tpl :size 300 :bindings [card fcards]
+               (li (text "~{(:name card)}"))))))))

@@ -478,7 +478,85 @@ html {
   line-height: 1.5em;
 }
 
-/* line 27, ../../assets/styles/main.scss */
+/* line 19, ../../assets/styles/main.scss */
 body {
   background: #d9ebf9;
+}
+
+/* line 28, ../../assets/styles/main.scss */
+h1 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.875em;
+  line-height: 0.8em;
+  margin-bottom: 0.8em;
+  border-bottom: 1px solid #666;
+}
+
+/* line 35, ../../assets/styles/main.scss */
+h2 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  line-height: 1em;
+  margin-bottom: 0.8em;
+  border-bottom: 1px solid #666;
+}
+
+/* line 42, ../../assets/styles/main.scss */
+h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.3125em;
+  line-height: 1.14286em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 1.14286em;
+  margin-bottom: 0.57143em;
+}
+
+/* line 50, ../../assets/styles/main.scss */
+h4 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0625em;
+  line-height: 1.41176em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 1.41176em;
+  margin-bottom: 0.70588em;
+}
+
+/* line 1, ../../assets/styles/_layout.scss */
+.container {
+  *zoom: 1;
+  max-width: 59em;
+  _width: 59em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+/* line 38, ../../../../../../.rvm/gems/ruby-1.9.3-p194/gems/compass-0.13.alpha.0/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* line 8, ../../assets/styles/_layout.scss */
+.filters {
+  width: 49.15254%;
+  float: left;
+  margin-right: 1.69492%;
+  display: inline;
+}
+
+/* line 12, ../../assets/styles/_layout.scss */
+.cards {
+  width: 49.15254%;
+  float: right;
+  margin-right: 0;
+  *margin-left: -1em;
+  display: inline;
 }
