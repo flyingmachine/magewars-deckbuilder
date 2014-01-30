@@ -23,3 +23,7 @@ $total-columns  : 12;
 
 // To customize vertical ryhthm, see http://compass-style.org/reference/compass/typography/vertical_rhythm/
 @include establish-baseline;
+
+body {
+  background: #d9ebf9;
+}

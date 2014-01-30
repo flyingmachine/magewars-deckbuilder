@@ -3,10 +3,10 @@ require 'susy'
 # Require any additional compass plugins here.
 
 # Set this to the root of your project when deployed:
-http_path = "../../public"
-css_dir = "../../public/stylesheets"
+http_path = "../../static"
+css_dir = "../../static/stylesheets"
 sass_dir = "."
-images_dir = "../../images/stylesheets"
+images_dir = "../../static/images"
 javascripts_dir = "javascripts"
 
 # You can select your preferred output style here (can be overridden via the command line):

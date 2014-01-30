@@ -98,7 +98,8 @@
 (get-state)
 
 (html
- (head)
+ (head
+  (link :rel "stylesheet" :href "stylesheets/main.css"))
  (body
    (h1 "Mage Wars Deck Builder")
    (div :id "deck"

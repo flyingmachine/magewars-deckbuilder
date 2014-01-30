@@ -9,6 +9,8 @@
                   [tailrecursion.hoplon.boot  :refer :all]}
  :public "resources/public"
  :src-paths #{"src/browser" "src/server" "resources/data"}
+ :src-static #{"resources/static"}
+
  :port 5050
 
  :tasks
