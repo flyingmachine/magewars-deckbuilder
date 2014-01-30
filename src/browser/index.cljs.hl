@@ -47,10 +47,6 @@
     (let [f (if (get-in @filters [attr val]) disj conj)]
       (swap! filters #(merge-with f % {attr val})))))
 
-(defn filter-count
-  [counts attr val]
-  (cell= (get-in counts [attr val])))
-
 (defn vset?
   [attr]
   (= (attr attribute-filter-types) :vset))
@@ -61,7 +57,7 @@
    (label
     (input :type "checkbox"
            :on-change (toggle-filter! attr val))
-    (text "~{display} ~{@(filter-count counts attr val)}"))))
+    (text "~{display} ~{(get-in counts [attr val])}"))))
 (defn filter-val
   [attr val]
   (if (vset? attr)
