@@ -93,7 +93,7 @@
                (group-by first v)))
             (select-keys fvals (:vset filter-type-attributes))))))
 
-(defn fc2
+(defn filter-cards-indexed
   [cards filters index]
   (apply s/intersection
          cards
