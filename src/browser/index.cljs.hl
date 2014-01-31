@@ -2,8 +2,8 @@
   (:require [clojure.set :as s]
             [magewars-deckbuilder.deck :as d]
             [magewars-deckbuilder.filtering
-             :as f :refer [filter-match filter-cards filter-options
-                           filter-card card-index filter-vals fc2
+             :as f :refer [filter-options
+                           card-index filter-vals fc2
                            attribute-filter-types empty-filters]]
             [tailrecursion.castra
              :as c :refer [mkremote]]))
@@ -25,12 +25,12 @@
 (defc cards #{})
 (defc error nil)
 (def get-state (mkremote 'magewars-deckbuilder.api.deck/get-state cards error (cell nil)))
-(defc= filtered-cards (filter-cards cards filters))
+(defc= fvals (filter-vals cards))
+(defc= cindex (card-index cards fvals))
+(defc= filtered-cards (fc2 cards filters cindex))
 (defc= fcards (sort-by :name filtered-cards))
 (defc= scards (set filtered-cards))
 (defc= foptions (sort-by #(get filter-attributes-ordered (first %)) (filter-options cards)))
-(defc= fvals (filter-vals cards))
-(defc= cindex (card-index cards fvals))
 (defc= counts
   (reduce merge
           (map (fn [[attr fvals]]
